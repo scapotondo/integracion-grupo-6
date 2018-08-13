@@ -31,10 +31,11 @@ mvnw.cmd spring-boot:run
  - Tesorería gestiona las cuentas corrientes de los clientes ingresando las novedades diarias de ventas y cobranzas realizadas.
  - Tesorería contrata un servicio tercerizado para cobrar los saldos adeudados a sus clientes. Diariamente emite un listado de clientes y montos a cobrar y lo envía a Gestión Reclamo - Cobranza
  - Tesorería administra los saldos a pagar con los proveedores. Recibe de Almacén las Órdenes de Compra enviadas, las compara con las facturas enviadas por los Distribuidores y realiza los pagos.
- - Gestión Reclamo - Cobranza recibe los reclamos de los clientes. Verifica con la Tienda que el reclamo sea válido y coordina el retiro del producto y la devolución del monto de la compra.
- - Gestión Reclamo - Cobranza recibe de Tesorería el listado de cobranzas a realizar. Envía a sus cobradores a recaudar y luego líquida lo recibido.
- - Gestión Reclamo - Cobranza realiza una nota de devolución con todos los productos retirados y los entrega al Almacén correspondiente.
- - Gestión Reclamo - Cobranza realiza una liquidación a Tesorería de todos los reclamos en los que realizó la devolución de dinero.
+ -  <b>Gestión Reclamo - Cobranza recibe los reclamos de los clientes. Verifica con la Tienda que el reclamo sea válido y coordina el retiro del producto y la devolución del monto de la compra.</b>
+ -  <b>Gestión Reclamo - Cobranza recibe de Tesorería el listado de cobranzas a realizar. Envía a sus cobradores a recaudar y luego líquida lo recibido.</b>
+ -  <b>Gestión Reclamo - Cobranza realiza una nota de devolución con todos los productos retirados y los entrega al Almacén correspondiente.</b>
+ -  <b>Gestión Reclamo - Cobranza realiza una liquidación a Tesorería de todos los reclamos en los que realizó la devolución de dinero.</b>
+
 
 ## Fase Integracion
 
