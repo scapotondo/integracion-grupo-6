@@ -9,4 +9,6 @@ public interface EntidadRepository extends Repository<Entidad, Long> {
 
     List findAll();
 
+    Entidad save(Entidad entidad);
+
 }

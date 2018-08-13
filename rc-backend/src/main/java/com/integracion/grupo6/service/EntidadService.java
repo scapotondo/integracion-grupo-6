@@ -8,4 +8,6 @@ public interface EntidadService {
 
     List<Entidad> findAll();
 
+    Entidad save(Entidad entidad);
+
 }

@@ -17,4 +17,9 @@ public class EntidadServiceImpl implements EntidadService {
     public List<Entidad> findAll() {
         return entidadRepository.findAll();
     }
+
+    @Override
+    public Entidad save(Entidad entidad) {
+        return entidadRepository.save(entidad);
+    }
 }

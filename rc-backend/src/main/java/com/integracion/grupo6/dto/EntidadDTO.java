@@ -1,16 +1,11 @@
-package com.integracion.grupo6.domain;
+package com.integracion.grupo6.dto;
 
-import javax.persistence.*;
+public class EntidadDTO {
 
-@Entity
-@Table(name = "ENTIDAD")
-public class Entidad {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
+
 
     public Long getId() {
         return id;
@@ -30,7 +25,7 @@ public class Entidad {
 
     @Override
     public String toString() {
-        return "Entidad{" +
+        return "EntidadDTO{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 '}';
