@@ -1,1 +1,5 @@
-SELECT 1
+INSERT INTO
+  ENTIDAD(ID, NOMBRE)
+VALUES
+  (1, 'Uno'),
+  (2, 'Dos');
