@@ -12,20 +12,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.apache.ftpserver.*;
 
+import java.io.File;
+
 @Component
 public class ReclamosFtpServer {
 
     protected final Log logger = LogFactory.getLog(this.getClass());
 
     private static final int DEFAULT_PORT = 2221;
-    private static final String DEFAULT_USER = "admin";
+    private static final String DEFAULT_USER = "reclamos";
     private static final String DEFAULT_PASSWORD = "reclamos";
 
 
     @Value("${ftpserver.port}")
     private String ftpPort;
 
-    @Value("${ftpserver.user.admin.homedirectory}")
+    @Value("${ftpserver.user.reclamos.homedirectory}")
     private String homeDir;
 
     public void listen() {
@@ -55,8 +57,8 @@ public class ReclamosFtpServer {
 
     private UserManager getUserManager() throws FtpException {
         PropertiesUserManagerFactory userManagerFactory = new PropertiesUserManagerFactory();
-        UserManager userManager = userManagerFactory.createUserManager();
-        return userManager;
+        userManagerFactory.setFile(new File("application.properties"));
+        return userManagerFactory.createUserManager();
     }
 
     private int safeGetPort() {
