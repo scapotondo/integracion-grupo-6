@@ -12,6 +12,7 @@ public class Order {
     @ManyToOne
     private Client client;
 
+    @ManyToOne
     private OrderStatus orderStatus;
 
     public Long getId() {
