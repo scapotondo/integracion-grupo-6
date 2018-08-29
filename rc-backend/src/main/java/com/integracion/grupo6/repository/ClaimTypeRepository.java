@@ -1,4 +1,4 @@
 package com.integracion.grupo6.repository;
 
-public class ClaimTypeRepository {
+public interface ClaimTypeRepository {
 }
