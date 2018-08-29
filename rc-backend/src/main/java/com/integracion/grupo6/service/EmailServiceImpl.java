@@ -5,7 +5,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-@Service(value = "emailService")
+@Service
 public class EmailServiceImpl implements EmailService {
 
     @Autowired

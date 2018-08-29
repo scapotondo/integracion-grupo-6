@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service(value = "entidadService")
+@Service
 public class EntidadServiceImpl implements EntidadService {
 
     @Autowired

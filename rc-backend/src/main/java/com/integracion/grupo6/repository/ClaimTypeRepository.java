@@ -1,4 +1,9 @@
 package com.integracion.grupo6.repository;
+import com.integracion.grupo6.domain.ClaimType;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ClaimTypeRepository {
+@Repository
+public interface ClaimTypeRepository extends JpaRepository<ClaimType, Long> {
+
 }
