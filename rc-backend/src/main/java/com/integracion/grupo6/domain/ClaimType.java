@@ -12,6 +12,8 @@ public class ClaimType {
 
     private String name;
 
+    private boolean logistics;
+
     public Long getId() {
         return id;
     }
@@ -28,12 +30,20 @@ public class ClaimType {
         this.name = name;
     }
 
+    public boolean isLogistics() {
+        return logistics;
+    }
+
+    public void setLogistics(boolean logistics) {
+        this.logistics = logistics;
+    }
+
     @Override
     public String toString() {
         return "ClaimType{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", logistics=" + logistics +
                 '}';
     }
-
 }
