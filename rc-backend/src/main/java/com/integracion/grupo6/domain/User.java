@@ -12,9 +12,13 @@ public class User {
 
     private String fullName;
 
+    @Column(unique = true)
     private String username;
 
     private String password;
+
+    @ManyToOne
+    private UserRole userRole;
 
     public Long getId() {
         return id;
@@ -48,6 +52,14 @@ public class User {
         this.password = password;
     }
 
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -55,6 +67,7 @@ public class User {
                 ", fullName='" + fullName + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", userRole=" + userRole +
                 '}';
     }
 }
