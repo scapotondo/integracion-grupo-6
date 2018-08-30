@@ -15,7 +15,7 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public Client getByIdentification(String identification) {
+    public Client findByIdentification(String identification) {
         Optional<Client> optionalClient = clientRepository.findById(identification);
         if(optionalClient.isPresent()) {
             return optionalClient.get();
@@ -27,7 +27,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public boolean exists(String identification) {
         try {
-            getByIdentification(identification);
+            findByIdentification(identification);
             return true;
         } catch (EntityNotFoundException ex) {
             return false;

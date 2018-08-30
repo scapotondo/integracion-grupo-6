@@ -1,7 +1,9 @@
 package com.integracion.grupo6.batch.writer;
 
 import com.integracion.grupo6.domain.Entidad;
+import com.integracion.grupo6.domain.Order;
 import com.integracion.grupo6.service.EntidadService;
+import com.integracion.grupo6.service.OrderService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.batch.item.ItemWriter;
@@ -11,20 +13,20 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class EntidadCSVWriter implements ItemWriter<Entidad> {
+public class OrderIntegrationWriter implements ItemWriter<Order> {
 
-    protected final Log logger = LogFactory.getLog(this.getClass());
+    private final Log logger = LogFactory.getLog(this.getClass());
 
     @Autowired
-    private EntidadService entidadService;
+    private OrderService orderService;
 
     @Override
-    public void write(List<? extends Entidad> list) throws Exception {
-        for (Entidad entidad : list) {
+    public void write(List<? extends Order> list) throws Exception {
+        for (Order order : list) {
             try {
-                entidadService.save(entidad);
+                orderService.save(order);
             } catch (Exception ex) {
-                logger.error("Error al guardar entidad en repositorio", ex);
+                logger.error("Error al guardar la Order en repositorio", ex);
             }
         }
     }

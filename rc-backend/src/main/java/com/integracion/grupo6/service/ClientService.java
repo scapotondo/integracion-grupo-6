@@ -6,7 +6,7 @@ import javax.persistence.EntityNotFoundException;
 
 public interface ClientService {
 
-    Client getByIdentification(String identification) throws EntityNotFoundException;
+    Client findByIdentification(String identification) throws EntityNotFoundException;
 
     boolean exists(String identification);
 
