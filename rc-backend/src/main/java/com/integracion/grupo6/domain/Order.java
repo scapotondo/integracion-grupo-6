@@ -15,6 +15,9 @@ public class Order {
     @ManyToOne
     private OrderStatus orderStatus;
 
+    @ManyToOne
+    private Product product;
+
     public Long getId() {
         return id;
     }
