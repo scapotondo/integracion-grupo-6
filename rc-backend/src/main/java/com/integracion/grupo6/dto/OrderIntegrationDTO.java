@@ -1,6 +1,6 @@
 package com.integracion.grupo6.dto;
 
-public class SaleDTO {
+public class OrderIntegrationDTO {
 
     private Long id;
 

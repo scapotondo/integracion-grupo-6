@@ -9,10 +9,12 @@ import com.integracion.grupo6.service.OrderService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
 
-public class SaleAdapter {
+@Component
+public class OrderIntegrationAdapter {
 
     private final Log logger = LogFactory.getLog(this.getClass());
 
@@ -27,6 +29,7 @@ public class SaleAdapter {
             Order order = new Order();
 
             order.setId(dto.getId());
+            order.setClient(validateClient(dto));
 
         } else {
             throw new AlreadyIntegratedException("La venta con Id: " + dto.getId() + " ya fue integrada.");
