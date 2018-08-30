@@ -35,13 +35,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client save(String identification, String fullName, String email) {
-        Client client = new Client();
-
-        client.setIdentification(identification);
-        client.setFullName(fullName);
-        client.setEmail(email);
-
+    public Client save(Client client) {
         return clientRepository.save(client);
     }
 }

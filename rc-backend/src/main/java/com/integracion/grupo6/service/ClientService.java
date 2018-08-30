@@ -10,6 +10,6 @@ public interface ClientService {
 
     boolean exists(String identification);
 
-    Client save(String identification, String fullName, String email);
+    Client save(Client client);
 
 }
