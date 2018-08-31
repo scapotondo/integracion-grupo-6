@@ -1,0 +1,19 @@
+<mat-card class="container">
+  <img class="image" src="http://mmcartons.in/img/about/4.jpg" alt="Logo" style="width: 250px;">
+
+  <mat-form-field>
+    <input matInput placeholder="Nombre de usuario" name="username" [(ngModel)]="username">
+
+  </mat-form-field>
+  <br/>
+  <mat-form-field>
+    <input matInput type="{{hide ? 'password' : 'text'}}" placeholder="Password" name="password" [(ngModel)]="password">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+  <button mat-raised-button color="primary" class="login-button" (click)="attemptLogin()" >
+    Login
+  </button>
+  <br/>
+
+  <label class="new-account-label">O creá una cuenta nueva <a routerLink="/new-account">aquí</a></label>
+</mat-card>

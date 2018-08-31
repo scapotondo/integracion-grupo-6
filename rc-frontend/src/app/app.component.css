@@ -1,0 +1,62 @@
+.is-mobile .toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+  display: block !important;
+
+}
+
+.toolbar{
+  display: block !important;
+  padding-top: 21px !important;
+}
+
+mat-icon{
+  cursor:pointer !important;
+}
+
+.titleContainer{
+  margin-top: -8px;
+}
+
+.title{
+  display: inline-block;
+  width: 60%;
+  text-align: center;
+  vertical-align: super;
+}
+
+.right{
+  float: right;
+  margin-right: 9px;
+}
+
+.buttonsContent{
+  width: 20%;
+  display: inline-block;
+}
+
+h1.app-name {
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.sidenav-container {
+  flex: 1;
+  height: 100%;
+  background-color: white;
+}
+
+.sidenav-container a {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.is-mobile .sidenav-container {
+  flex: 1 0 auto;
+}
+
+.header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
