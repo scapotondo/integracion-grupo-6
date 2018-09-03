@@ -1,14 +1,26 @@
-.example-icon {
-  padding: 0 14px;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
+.container > * {
+  width: 100%;
 }
-.example-card {
-  width: 400px;
-  margin: 10% auto;
+
+.login-button {
+  margin-top: 30px;
 }
-.mat-card-title{
-  font-size: 16px;
+
+.new-account-label {
+  text-align: center;
+  font-size: 13px;
+}
+
+.image {
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
 }
