@@ -2,22 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CustomMaterialModule } from './modules/custom-material-modules';
 import { RouterModule } from '@angular/router';
 import { AppRoutes } from './app.routes';
 import { LoginComponent } from './components/login/login.component';
-import {FormsModule} from "@angular/forms";
-import {UIContext} from "./ui.context";
-import {TokenStorage} from "./storage/token.storage";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {TokenInterceptor} from "./app.interceptor";
-import {AuthService} from "./services/auth.service";
+import { UIContext} from "./ui.context";
+import { TokenStorage} from "./storage/token.storage";
+import { HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { TokenInterceptor} from "./app.interceptor";
+import { AuthService} from "./services/auth.service";
+import { NewClaimComponent } from './components/new-claim/new-claim.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    NewClaimComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -25,7 +27,8 @@ import {AuthService} from "./services/auth.service";
     CustomMaterialModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     UIContext,
