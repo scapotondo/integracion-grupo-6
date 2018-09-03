@@ -7,7 +7,7 @@ import * as Global from '../global';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
 
   baseUrl = Global.server + 'token/';
 
