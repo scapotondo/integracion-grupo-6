@@ -3,3 +3,19 @@ INSERT INTO
 VALUES
   (1, 'Uno'),
   (2, 'Dos');
+
+INSERT INTO USER_ROLE (ID, NAME) VALUES (1, 'ROLE_ADMIN'), (2, 'ROLE_USER');
+
+ INSERT INTO
+  USER_(
+  ID,
+  FULL_NAME,
+  PASSWORD,
+  USERNAME,
+  USER_ROLE_ID
+  ) VALUES (  1,
+  'Maximiliano',
+  '$2a$10$U63eeYBEQfuDYacvgt6xMe8JS5vwM6sB9g6TfncEFRNjZhQy5L5LS',
+  'maxi',
+  1
+  );

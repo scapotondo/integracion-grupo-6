@@ -1,0 +1,16 @@
+POST http://localhost:8080/api/token/
+Content-Type: application/json
+
+{
+  "username": "maxi",
+  "password": "123456"
+}
+
+###
+
+GET http://localhost:8080/api/entidad/all/
+Authorization: Bearer *token*
+Content-Type: application/json
+
+###
+
