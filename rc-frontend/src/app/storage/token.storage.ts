@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import {LoginUser} from "../models/loginUser.model";
+import {UserStored} from "../models/userStored.model";
 
 @Injectable()
 export class TokenStorage {
@@ -26,17 +28,17 @@ export class TokenStorage {
     this.isLoggedIn = token !== undefined;
   }
 
-  public saveUser(user: string) {
+  public saveUser(user: UserStored) {
     window.sessionStorage.removeItem(this.USER_KEY);
-    window.sessionStorage.setItem(this.USER_KEY, user);
+    window.sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }
 
   public getToken(): string {
     return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
-  public getUser(): string {
-    return sessionStorage.getItem(this.USER_KEY);
+  public getUser(): UserStored {
+    return JSON.parse(sessionStorage.getItem(this.USER_KEY));
   }
 
   public getFormattedToken(): string {
