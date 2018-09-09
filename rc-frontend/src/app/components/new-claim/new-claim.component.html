@@ -4,10 +4,10 @@
       <ng-template matStepLabel>Buscar Pedido</ng-template>
       <div>
         <mat-form-field>
-          <input matInput placeholder="DNI Cliente" formControlName="clientId" required>
+          <input matInput placeholder="DNI Cliente" formControlName="clientId" [(ngModel)]="clientIdentifier" required>
         </mat-form-field>
         <mat-form-field style="margin-left: 30px;">
-          <input matInput placeholder="Numero de pedido" formControlName="orderNbr" required>
+          <input matInput placeholder="Numero de pedido" formControlName="orderNbr" [(ngModel)]="orderNumber" required>
         </mat-form-field>
         <div>
           <button mat-button matStepperNext (click)="buscarOrden()">Siguiente</button>
