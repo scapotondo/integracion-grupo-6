@@ -14,12 +14,15 @@ import { TokenInterceptor} from "./app.interceptor";
 import { AuthService} from "./services/auth.service";
 import { NewClaimComponent } from './components/new-claim/new-claim.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from './components/user/user.component';
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NewClaimComponent
+    NewClaimComponent,
+    UserComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -33,6 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     UIContext,
     TokenStorage,
+    UserService,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,
