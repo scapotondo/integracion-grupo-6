@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import {UIContext} from '../../ui.context';
-import { UserService } from '../../services/user.service';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-user',
@@ -14,13 +14,13 @@ export class UserComponent implements OnInit {
 
   users: User[];
   constructor(
-    private uiContext: UIContext,
-    private userService: UserService
-  ) {}
+    public uiContext: UIContext,
+    public userService: UserService
+  ) {
+    this.uiContext.setTittle("Usuarios");
+  }
 
   ngOnInit() {
-    this.uiContext.setTittle("Usuarios");
-
     this.userService.findAll()
       .subscribe( data => {
         this.users = data;
