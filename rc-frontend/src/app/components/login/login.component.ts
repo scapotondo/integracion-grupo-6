@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {UIContext} from "../../ui.context";
-import {AuthService} from "../../services/auth.service";
-import {TokenStorage} from "../../storage/token.storage";
-import {Router} from "@angular/router";
-import {UserStored} from "../../models/userStored.model";
+import {UIContext} from '../../ui.context';
+import {AuthService} from '../../services/auth.service';
+import {TokenStorage} from '../../storage/token.storage';
+import {Router} from '@angular/router';
+import {UserStored} from '../../models/userStored.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   username: string;
   password: string;
@@ -22,10 +22,6 @@ export class LoginComponent implements OnInit {
                private router: Router,
                private uiContext: UIContext) {
     this.uiContext.setShowToolbar(false);
-  }
-
-  ngOnInit() {
-
   }
 
   attemptLogin() {
