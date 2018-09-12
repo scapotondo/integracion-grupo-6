@@ -16,17 +16,20 @@ export class LoginComponent {
   password: string;
   hide = true;
   user: UserStored;
+  loginError: boolean;
 
   constructor( private authService: AuthService,
                private tokenStorage: TokenStorage,
                private router: Router,
                private uiContext: UIContext) {
     this.uiContext.setShowToolbar(false);
+    this.loginError = false;
   }
 
   attemptLogin() {
     const that = this;
     this.authService.attemptAuth(this.username, this.password).subscribe(data => {
+      this.loginError = false;
       this.tokenStorage.saveToken(data.token);
       this.user = {
           username: data.username,
@@ -35,6 +38,11 @@ export class LoginComponent {
         this.tokenStorage.saveUser(this.user);
       this.uiContext.setShowToolbar(true);
       this.router.navigate(['./new-claim']);
+
+    }, err => {
+      this.username = '';
+      this.password = '';
+      this.loginError = true;
     });
   }
 }

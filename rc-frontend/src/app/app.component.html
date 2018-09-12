@@ -9,7 +9,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #snav mode="over" fixedTopGap="56" style="width: 195px;" (click)="snav.close()">
     <mat-nav-list>
-      <mat-list-item routerLink="">
+      <mat-list-item routerLink="new-claim">
         <mat-icon>add</mat-icon>
         <a>Generar Reclamo</a>
       </mat-list-item>
@@ -20,12 +20,10 @@
         <a >ABM usuarios</a>
       </mat-list-item>
       <mat-divider></mat-divider>
-      <!--
            <mat-list-item>
              <mat-icon>launch</mat-icon>
              <a href="http://localhost:8080/h2-console/" target="_blank">Consola H2DB</a>
            </mat-list-item>
-     -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

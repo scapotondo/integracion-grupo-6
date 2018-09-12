@@ -46,7 +46,7 @@ import { ClaimService } from './services/claim.service';
       multi: true
     },
     OrderService,
-    ClaimService,
+    ClaimService
   ],
   bootstrap: [AppComponent]
 })

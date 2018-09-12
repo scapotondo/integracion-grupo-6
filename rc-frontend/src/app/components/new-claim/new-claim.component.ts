@@ -26,15 +26,26 @@ export class NewClaimComponent implements OnInit {
   selectedOrigin: ClaimOrigin;
   createClaimFormGroup: FormGroup;
   orderDetailsFormGroup: FormGroup;
+
   @ViewChild('stepper') stepper: MatStepper;
 
-  constructor(private _formBuilder: FormBuilder,
+  constructor(public _formBuilder: FormBuilder,
     private orderService: OrderService,
     private claimService: ClaimService) {
+
+    this.resetValues();
   }
 
   ngOnInit() {
     const that = this;
+
+    this.stepper.selectionChange.subscribe(selection => {
+      if (selection.selectedStep.label === 'firstStep') {
+        this.resetValues();
+      } else if (selection.selectedStep.label === 'searchOrder') {
+        this.searchOrder();
+      }
+    });
 
     this.orderDetailsFormGroup = this._formBuilder.group({
       clientId: ['', Validators.required],
@@ -45,14 +56,6 @@ export class NewClaimComponent implements OnInit {
       originCombo: ['', Validators.required],
       typeCombo: ['', Validators.required],
       textDescription: ['', Validators.required]
-    });
-
-    this.stepper.selectionChange.subscribe(selection => {
-      if (selection.selectedStep.label === 'firstStep') {
-        this.resetValues();
-      } else if (selection.selectedStep.label === 'searchOrder') {
-        this.searchOrder();
-      }
     });
 
     this.claimService.findTypes().subscribe(types => {
@@ -88,10 +91,10 @@ export class NewClaimComponent implements OnInit {
         that.errorMessage = 'Los datos ingresados no son validos o no tienen el formato correcto';
       }
     });
+
   }
 
   createClaim() {
-
     let claim: Claim;
 
     claim = {
@@ -103,7 +106,12 @@ export class NewClaimComponent implements OnInit {
       orderId: this.order.id,
       clientIdentification: this.order.client.identification
     };
+    console.log(claim)
+    this.claimService.create(claim).subscribe(
+      response => console.log(response),
+      err => console.log(err)
+    );
 
-    this.claimService.create(claim);
   }
+
 }

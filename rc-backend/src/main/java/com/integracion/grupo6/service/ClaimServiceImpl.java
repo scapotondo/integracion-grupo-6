@@ -54,7 +54,7 @@ public class ClaimServiceImpl implements ClaimService {
         Order order = orderRepository.findById(claimDto.getOrderId()).get();
         Claim claim = new Claim();
 
-        if (order.getClient().getIdentification() != claimDto.getClientIdentification()) {
+        if (!order.getClient().getIdentification().equals(claimDto.getClientIdentification())) {
 
             claim.setClaimOrigin(claimDto.getClaimOrigin());
             claim.setClaimType(type);

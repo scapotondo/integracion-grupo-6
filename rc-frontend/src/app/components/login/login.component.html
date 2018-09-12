@@ -7,6 +7,7 @@
     <input matInput type="{{hide ? 'password' : 'text'}}" placeholder="Password" name="password" [(ngModel)]="password">
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
+  <mat-error *ngIf="loginError">Nombre de usuario o password incorrecto.</mat-error>
   <button mat-raised-button color="primary" class="login-button" (click)="attemptLogin()" >
     Login
   </button>
