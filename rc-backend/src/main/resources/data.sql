@@ -19,3 +19,5 @@ INSERT INTO USER_ROLE (ID, NAME) VALUES (1, 'ROLE_ADMIN'), (2, 'ROLE_USER');
   'maxi',
   1
   );
+
+INSERT INTO CLAIM_TYPE (NAME, LOGISTICS) VALUES ('Producto dañado', false);
