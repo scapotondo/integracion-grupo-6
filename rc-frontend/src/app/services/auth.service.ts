@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs/internal/Observable";
-import {HttpClient} from "@angular/common/http";
-import {LoginUser} from "../models/loginUser.model";
+import {Observable} from 'rxjs/internal/Observable';
+import {HttpClient} from '@angular/common/http';
+import {LoginUser} from '../models/loginUser.model';
 import * as Global from '../global';
 
 @Injectable({

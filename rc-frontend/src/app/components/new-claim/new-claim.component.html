@@ -1,65 +1,65 @@
 <mat-vertical-stepper [linear]="true" #stepper>
-  <mat-step [stepControl]="orderDetailsFormGroup">
+  <mat-step label="firstStep" [stepControl]="orderDetailsFormGroup">
     <form [formGroup]="orderDetailsFormGroup">
       <ng-template matStepLabel>Buscar Pedido</ng-template>
       <div>
         <mat-form-field>
-          <input matInput placeholder="DNI Cliente" formControlName="clientId" required>
+          <input matInput type="number" placeholder="DNI Cliente" formControlName="clientId" [(ngModel)]="clientIdentifier" required>
         </mat-form-field>
         <mat-form-field style="margin-left: 30px;">
-          <input matInput placeholder="Numero de pedido" formControlName="orderNbr" required>
+          <input matInput placeholder="Numero de pedido" formControlName="orderNbr" [(ngModel)]="orderNumber" required>
         </mat-form-field>
         <div>
-          <button mat-button matStepperNext (click)="buscarOrden()">Siguiente</button>
+          <button mat-button matStepperNext>Siguiente</button>
         </div>
       </div>
     </form>
   </mat-step>
-  <mat-step>
+  <mat-step label="searchOrder">
       <ng-template matStepLabel>Detalles de pedido</ng-template>
-      <b>Cliente</b>
+      <h4 *ngIf="errorMessage != ''">Error: {{ errorMessage }}</h4>
+      <b *ngIf="errorMessage === ''">Cliente</b>
       <mat-list>
           <mat-list-item *ngIf="order"> Nombre:  {{ order.client.fullName}} </mat-list-item>
           <mat-list-item *ngIf="order"> DNI: {{order.client.identification}} </mat-list-item>
           <mat-list-item *ngIf="order"> Email: {{order.client.email}} </mat-list-item>
       </mat-list>
       <br/>
-      <b>Orden</b>
+      <b *ngIf="errorMessage === ''">Orden</b>
       <mat-list>
           <mat-list-item *ngIf="order"> Orden: {{order.id}} </mat-list-item>
-          <mat-list-item *ngIf="order"> Estado: {{order.status.name}} </mat-list-item>
-          <mat-list-item *ngIf="order"> Producto: {{order.product.description}} </mat-list-item>
+          <mat-list-item *ngIf="order && order.status"> Estado: {{order.status.name}} </mat-list-item>
+          <mat-list-item *ngIf="order && order.product"> Producto: {{order.product.description}} </mat-list-item>
       </mat-list>
     <div>
       <button mat-button matStepperPrevious>Atras</button>
-      <button mat-button matStepperNext>Siguiente</button>
+      <button mat-button matStepperNext *ngIf="errorMessage === ''">Siguiente</button>
     </div>
   </mat-step>
-  <mat-step [stepControl]="createClaimFormGroup">
+  <mat-step [stepControl]="createClaimFormGroup" *ngIf="errorMessage === ''">
       <form [formGroup]="createClaimFormGroup">
           <ng-template matStepLabel>Crear Reclamo</ng-template>
           <div class="container">
             <mat-form-field style="width: 200px;">
-              <mat-select placeholder="Origen del reclamo">
-                <!-- <mat-option *ngFor="let food of foods" [value]="food.value"> -->
-                <mat-option>
-                  <!-- {{food.viewValue}} -->
+              <mat-select placeholder="Origen del reclamo" formControlName="originCombo" required [(ngModel)]="selectedOrigin">
+                <mat-option *ngFor="let origin of origins" [value]="origin">
+                  {{origin}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field style="width: 200px;">
-              <mat-select placeholder="Tipo de reclamo">
-                <!-- <mat-option *ngFor="let food of foods" [value]="food.value"> -->
-                <mat-option>
-                  <!-- {{food.viewValue}} -->
+              <mat-select placeholder="Tipo de reclamo" formControlName="typeCombo" required [(ngModel)]="selectedType">
+                <mat-option *ngFor="let type of this.types" [value]="type">
+                  {{type.name}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field style="width: 700px;">
-              <textarea matInput placeholder="Descripción"></textarea>
+              <textarea matInput placeholder="Descripción" [(ngModel)]="claimDescription" formControlName="textDescription" required></textarea>
             </mat-form-field>
+
             <div>
               <button mat-button matStepperPrevious>Atras</button>
               <button mat-button (click)="createClaim()">Crear Orden</button>

@@ -5,11 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Debug backend (Launch)",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/rc-backend",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "com.integracion.grupo6.Grupo6Application",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug backend (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 8000
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:4200",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}/rc-frontend",
+            "sourceMapPathOverrides": {
+                "webpack:/*": "${webRoot}/*"
+            }
         }
     ]
 }
