@@ -28,4 +28,14 @@ public class UserRoleServiceImpl implements UserRoleService {
     public List<UserRole> findAll() {
         return userRoleRepository.findAll();
     }
+
+    @Override
+    public UserRole findByName(String name) throws EntityNotFoundException {
+        Optional<UserRole> optionalUserRole = userRoleRepository.findByName(name);
+        if(optionalUserRole.isPresent()) {
+            return optionalUserRole.get();
+        } else {
+            throw new EntityNotFoundException("No se encontro el UserRole con name " + name);
+        }
+    }
 }

@@ -8,16 +8,18 @@ import java.util.Optional;
 
 public interface UserService {
 
-    User create(UserDTO user);
+    void create(UserDTO user);
 
-    User update(UserDTO user);
+    void update(UserDTO user);
 
-    User delete(Long id);
+    void delete(Long id);
 
     User findById(Long id);
 
-    List<User> findAll();
+    List<UserDTO> findAll();
 
     User findByUsername(String username);
+
+    UserDTO findDTOByUsername(String username);
 
 }

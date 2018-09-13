@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import {UIContext} from '../../ui.context';
-import {UserService} from "../../services/user.service";
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -10,14 +10,14 @@ import {UserService} from "../../services/user.service";
 })
 export class UserComponent implements OnInit {
 
-  displayedColumns: string[] = ['fullName', 'username'];
+  displayedColumns: string[] = ['fullName', 'username', 'role', 'action'];
 
   users: User[];
   constructor(
     public uiContext: UIContext,
     public userService: UserService
   ) {
-    this.uiContext.setTittle("Usuarios");
+    this.uiContext.setTittle('Usuarios');
   }
 
   ngOnInit() {
@@ -28,12 +28,10 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(user: User): void {
-    /*
-    this.userService.deleteUser(user)
+    this.userService.delete(user)
       .subscribe( data => {
         this.users = this.users.filter(u => u !== user);
-      })
-      */
-  };
+      });
+  }
 
 }

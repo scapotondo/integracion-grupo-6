@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs/internal/Observable";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from 'rxjs/internal/Observable';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as Global from '../global';
-import {User} from "../models/user.model";
+import {User} from '../models/user.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -24,7 +24,7 @@ export class UserService {
   }
 
   public delete(user: User) {
-    return this.http.delete(this.userUrl + user.username)
+    return this.http.delete(this.userUrl + user.username);
   }
 
   public findAll(): Observable<User[]> {

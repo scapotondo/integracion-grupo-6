@@ -1,5 +1,6 @@
 package com.integracion.grupo6.dto;
 
+import com.integracion.grupo6.domain.User;
 import com.integracion.grupo6.domain.UserRole;
 
 public class UserDTO {
@@ -7,7 +8,9 @@ public class UserDTO {
     private String fullName;
     private String username;
     private String password;
-    private UserRole userRole;
+    private String userRole;
+
+    public UserDTO() { }
 
     public String getFullName() {
         return fullName;
@@ -33,11 +36,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public UserRole getUserRole() {
+    public String getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(UserRole userRole) {
+    public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
 }

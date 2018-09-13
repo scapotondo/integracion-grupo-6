@@ -17,18 +17,18 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public User create(@RequestBody UserDTO user){
-        return userService.create(user);
+    public void create(@RequestBody UserDTO user){
+        userService.create(user);
     }
 
     @PutMapping
-    public User update(@RequestBody UserDTO user){
-        return userService.update(user);
+    public void update(@RequestBody UserDTO user){
+        userService.update(user);
     }
 
     @DeleteMapping(path ={"/{id}"})
-    public User delete(@PathVariable("id") Long id) {
-        return userService.delete(id);
+    public void delete(@PathVariable("id") Long id) {
+        userService.delete(id);
     }
 
     @GetMapping(path = {"/{id}"})
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping(path = {"/{username}"})
-    public User findByUsername(@PathVariable("username") String username) {
-        return userService.findByUsername(username);
+    public UserDTO findDTOByUsername(@PathVariable("username") String username) {
+        return userService.findDTOByUsername(username);
     }
 }

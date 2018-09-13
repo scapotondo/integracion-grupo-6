@@ -11,4 +11,6 @@ public interface UserRoleService {
 
     List<UserRole> findAll();
 
+    UserRole findByName(String name) throws EntityNotFoundException;
+
 }
