@@ -20,6 +20,8 @@ import { OrderService } from './services/order.service';
 import { ClaimService } from './services/claim.service';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
 import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material";
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material";
     LoginComponent,
     NewClaimComponent,
     UserDeleteComponent,
-    UserComponent
+    UserComponent,
+    UserEditComponent,
+    UserCreateComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -57,7 +61,7 @@ import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material";
     ClaimService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [UserDeleteComponent],
-  exports: [UserDeleteComponent]
+  entryComponents: [UserDeleteComponent, UserEditComponent, UserCreateComponent],
+  exports: [UserDeleteComponent, UserEditComponent, UserCreateComponent]
 })
 export class AppModule { }

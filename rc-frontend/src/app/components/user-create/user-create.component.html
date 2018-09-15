@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Create usuario</h2>
+<mat-dialog-content>
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Fullname" [(ngModel)]="user.fullName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Username" [(ngModel)]="user.username"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Password" [(ngModel)]="user.password"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Role" [(ngModel)]="user.userRole">
+        <mat-option value="ROLE_ADMIN">ADMIN</mat-option>
+        <mat-option value="ROLE_USER">USER</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">NO</button>
+  <button mat-button (click)="onYesClick()"  cdkFocusInitial>SI</button>
+</mat-dialog-actions>

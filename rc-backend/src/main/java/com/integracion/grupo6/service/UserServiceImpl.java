@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
         newUser.setPassword(user.getPassword());
         newUser.setUserRole(userRoleService.findByName(user.getUserRole()));
         newUser.setUsername(user.getUsername());
+        userRepository.save(newUser);
     }
 
     @Override
