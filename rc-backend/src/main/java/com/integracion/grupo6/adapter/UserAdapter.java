@@ -25,6 +25,7 @@ public class UserAdapter {
 
     public UserDTO toUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
         userDTO.setFullName(user.getFullName());
         userDTO.setPassword(user.getPassword());
         userDTO.setUsername(user.getUsername());

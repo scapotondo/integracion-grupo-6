@@ -24,7 +24,7 @@ export class UserService {
   }
 
   public delete(user: User) {
-    return this.http.delete(this.userUrl + user.username);
+    return this.http.delete(this.userUrl + user.id);
   }
 
   public findAll(): Observable<User[]> {

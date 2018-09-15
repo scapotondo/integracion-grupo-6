@@ -20,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     return next.handle(authReq).do((data) => {
-      console.log(data);
+      //console.log(data);
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {

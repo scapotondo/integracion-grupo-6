@@ -21,12 +21,11 @@
       <mat-toolbar color="none">
         <mat-toolbar-row>
           <mat-icon>edit</mat-icon>
-          <mat-icon>delete</mat-icon>
+          <mat-icon (click)="deleteUser(element)">delete</mat-icon>
         </mat-toolbar-row>
       </mat-toolbar>
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

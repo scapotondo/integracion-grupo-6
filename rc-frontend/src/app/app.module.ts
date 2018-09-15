@@ -18,12 +18,15 @@ import { UserComponent } from './components/user/user.component';
 import {UserService} from "./services/user.service";
 import { OrderService } from './services/order.service';
 import { ClaimService } from './services/claim.service';
+import { UserDeleteComponent } from './components/user-delete/user-delete.component';
+import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NewClaimComponent,
+    UserDeleteComponent,
     UserComponent
   ],
   imports: [
@@ -33,7 +36,8 @@ import { ClaimService } from './services/claim.service';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [
     UIContext,
@@ -45,9 +49,15 @@ import { ClaimService } from './services/claim.service';
       useClass: TokenInterceptor,
       multi: true
     },
+    {
+      provide: MAT_DIALOG_DATA,
+      useValue: {} // Add any data you wish to test if it is passed/used correctly
+    },
     OrderService,
     ClaimService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [UserDeleteComponent],
+  exports: [UserDeleteComponent]
 })
 export class AppModule { }
