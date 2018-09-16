@@ -49,20 +49,23 @@ public class ClaimServiceImpl implements ClaimService {
 
     @Override
     public Claim create(ClaimDTO claimDto) {
-        ClaimType type = claimTypeRepository.findById(claimDto.getClaimType().getId()).get();
-        ClaimStatus status = claimStatusRepository.findById(claimDto.getClaimStatus().getId()).get();
+        ClaimType type = claimTypeRepository.findById(claimDto.getType().getId()).get();
+        ClaimStatus status = claimStatusRepository.getOne(0L);
         Order order = orderRepository.findById(claimDto.getOrderId()).get();
         Claim claim = new Claim();
 
-        if (!order.getClient().getIdentification().equals(claimDto.getClientIdentification())) {
+        if (order.getClient().getIdentification().equals(claimDto.getClientIdentification())) {
 
-            claim.setClaimOrigin(claimDto.getClaimOrigin());
+            claim.setClaimOrigin(claimDto.getOrigin());
             claim.setClaimType(type);
-            claim.setClaimStatus(status);
             claim.setCreationDate(Date.from(Instant.now()));
             claim.setDescription(claimDto.getDescription());
             claim.setOrder(order);
             // claim.setUser(user); // TODO: add user
+
+            if (status != null && status.getId() != null) {
+                claim.setClaimStatus(status);
+            }
 
             claimRepository.save(claim);
         }

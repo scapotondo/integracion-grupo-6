@@ -5,9 +5,9 @@ import com.integracion.grupo6.domain.ClaimOrigin;
 public class ClaimDTO {
 
     private Long id;
-    private ClaimOrigin claimOrigin;
-    private ClaimTypeDTO claimType;
-    private ClaimStatusDTO claimStatus;
+    private ClaimOrigin origin;
+    private ClaimTypeDTO type;
+    private ClaimStatusDTO status;
     private String description;
     private Long orderId;
     private String clientIdentification;
@@ -64,43 +64,43 @@ public class ClaimDTO {
     /**
      * @return the claimStatus
      */
-    public ClaimStatusDTO getClaimStatus() {
-        return claimStatus;
+    public ClaimStatusDTO getStatus() {
+        return status;
     }
 
     /**
      * @param claimStatus the claimStatus to set
      */
-    public void setClaimStatus(ClaimStatusDTO claimStatus) {
-        this.claimStatus = claimStatus;
+    public void setStatus(ClaimStatusDTO claimStatus) {
+        this.status = claimStatus;
     }
 
     /**
      * @return the claimType
      */
-    public ClaimTypeDTO getClaimType() {
-        return claimType;
+    public ClaimTypeDTO getType() {
+        return type;
     }
 
     /**
      * @param claimType the claimType to set
      */
-    public void setClaimType(ClaimTypeDTO claimType) {
-        this.claimType = claimType;
+    public void setType(ClaimTypeDTO claimType) {
+        this.type = claimType;
     }
 
     /**
      * @return the claimOrigin
      */
-    public ClaimOrigin getClaimOrigin() {
-        return claimOrigin;
+    public ClaimOrigin getOrigin() {
+        return origin;
     }
 
     /**
      * @param claimOrigin the claimOrigin to set
      */
-    public void setClaimOrigin(ClaimOrigin claimOrigin) {
-        this.claimOrigin = claimOrigin;
+    public void setOrigin(ClaimOrigin claimOrigin) {
+        this.origin = claimOrigin;
     }
 
     /**

@@ -101,12 +101,14 @@ export class NewClaimComponent implements OnInit {
       id: 0,
       origin: this.selectedOrigin,
       type: this.selectedType,
-      status: { id: 0, name: ''},
+      status: null,
       description: this.claimDescription,
       orderId: this.order.id,
       clientIdentification: this.order.client.identification
     };
-    console.log(claim)
+
+    console.log(claim);
+
     this.claimService.create(claim).subscribe(
       response => console.log(response),
       err => console.log(err)
