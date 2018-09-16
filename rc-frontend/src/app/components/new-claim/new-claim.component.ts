@@ -78,7 +78,7 @@ export class NewClaimComponent implements OnInit {
 
     this.orderService.getOrder(this.orderNumber).subscribe(order => {
       if (order === null) {
-        that.errorMessage = 'El codigo de orden ingresado no existe';
+        that.errorMessage = 'El código de orden ingresado no existe';
       } else if (order.client != null && order.client.identification === that.clientIdentifier.toString()) {
         that.order = order;
       } else {
@@ -86,7 +86,7 @@ export class NewClaimComponent implements OnInit {
       }
     }, err => {
       if (err.status === 500) {
-        that.errorMessage = 'El codigo de orden ingresado no existe';
+        that.errorMessage = 'El código de orden ingresado no existe';
       } else if (err.status === 400) {
         that.errorMessage = 'Los datos ingresados no son validos o no tienen el formato correcto';
       }
