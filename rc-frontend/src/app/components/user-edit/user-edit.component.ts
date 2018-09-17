@@ -26,7 +26,6 @@ export class UserEditComponent implements OnInit {
   }
 
   onYesClick() {
-    console.log(this.user);
     this.userService.update(this.user).subscribe( response => {
       this.dialog.close({ data: this.user });
     });

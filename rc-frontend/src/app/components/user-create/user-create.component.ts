@@ -33,7 +33,6 @@ export class UserCreateComponent implements OnInit {
   }
 
   onYesClick() {
-    console.log(this.user);
     this.userService.create(this.user).subscribe( response => {
       this.dialog.close({ data: this.user });
     });
