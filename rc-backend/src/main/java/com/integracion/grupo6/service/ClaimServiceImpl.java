@@ -78,10 +78,10 @@ public class ClaimServiceImpl implements ClaimService {
 
 
         claim.setClaimOrigin(claimDto.getOrigin());
-        claim.setClaimType(type);
+        claim.setClaimType(type.get());
+        claim.setOrder(order.get());
         claim.setCreationDate(Date.from(Instant.now()));
         claim.setDescription(claimDto.getDescription());
-        claim.setOrder(order);
         claim.setUser(user);
 
         if (status != null && status.getId() != null) {
