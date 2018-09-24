@@ -9,5 +9,5 @@ public interface ClaimService {
 
     Claim findById(Long id) throws EntityNotFoundException;
 
-    Claim create(ClaimDTO claimDto);
+    Claim create(ClaimDTO claimDto, String username);
 }

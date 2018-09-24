@@ -1,5 +1,6 @@
 package com.integracion.grupo6.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import com.integracion.grupo6.domain.Claim;
@@ -48,7 +49,7 @@ public class ClaimController {
     }
 
     @PostMapping
-    public Claim create(@RequestBody ClaimDTO claim){
-        return claimService.create(claim);
+    public Claim create(@RequestBody ClaimDTO claim, Principal principal){
+        return claimService.create(claim, principal.getName());
     }
 }

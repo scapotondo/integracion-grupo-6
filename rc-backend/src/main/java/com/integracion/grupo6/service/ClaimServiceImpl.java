@@ -21,6 +21,7 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.Optional;
 import com.integracion.grupo6.domain.Order;
+import com.integracion.grupo6.domain.User;
 
 @Service
 public class ClaimServiceImpl implements ClaimService {
@@ -37,6 +38,9 @@ public class ClaimServiceImpl implements ClaimService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public Claim findById(Long id) throws EntityNotFoundException {
         Optional<Claim> optionalClaim = claimRepository.findById(id);
@@ -48,10 +52,11 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     @Override
-    public Claim create(ClaimDTO claimDto) {
+    public Claim create(ClaimDTO claimDto, String username) {
         ClaimType type = claimTypeRepository.findById(claimDto.getType().getId()).get();
         ClaimStatus status = claimStatusRepository.getOne(0L);
         Order order = orderRepository.findById(claimDto.getOrderId()).get();
+        User user = userRepository.findByUsername(username);
         Claim claim = new Claim();
 
         if (order.getClient().getIdentification().equals(claimDto.getClientIdentification())) {
@@ -61,7 +66,7 @@ public class ClaimServiceImpl implements ClaimService {
             claim.setCreationDate(Date.from(Instant.now()));
             claim.setDescription(claimDto.getDescription());
             claim.setOrder(order);
-            // claim.setUser(user); // TODO: add user
+            claim.setUser(user);
 
             if (status != null && status.getId() != null) {
                 claim.setClaimStatus(status);
