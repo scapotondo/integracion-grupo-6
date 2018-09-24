@@ -2,7 +2,6 @@ package com.integracion.grupo6.service;
 
 import com.integracion.grupo6.adapter.UserAdapter;
 import com.integracion.grupo6.domain.User;
-import com.integracion.grupo6.domain.UserRole;
 import com.integracion.grupo6.dto.UserDTO;
 import com.integracion.grupo6.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(UserDTO user) {
-        User newUser = new User();
-        newUser.setFullName(user.getFullName());
-        newUser.setPassword(user.getPassword());
-        newUser.setUserRole(userRoleService.findByName(user.getUserRole()));
-        newUser.setUsername(user.getUsername());
+        User newUser = userAdapter.toUser(user);
         userRepository.save(newUser);
     }
 
@@ -69,7 +64,7 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> findAll() {
         List<UserDTO> users = new ArrayList<>();
         for (User user: userRepository.findAll()) {
-            users.add(userAdapter.toUserDTO(user));
+            users.add(userAdapter.toDTO(user));
         }
 
         return users;
@@ -82,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO findDTOByUsername(String username) {
-        return userAdapter.toUserDTO(findByUsername(username));
+        return userAdapter.toDTO(findByUsername(username));
     }
 
 }

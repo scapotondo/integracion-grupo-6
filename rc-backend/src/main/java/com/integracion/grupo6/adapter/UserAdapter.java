@@ -15,6 +15,8 @@ public class UserAdapter {
 
     public User toUser(UserDTO userDTO) {
         User user = new User();
+
+        user.setId(userDTO.getId());
         user.setFullName(userDTO.getFullName());
         user.setPassword(userDTO.getPassword());
         user.setUsername(userDTO.getUsername());
@@ -23,8 +25,9 @@ public class UserAdapter {
         return user;
     }
 
-    public UserDTO toUserDTO(User user) {
+    public UserDTO toDTO(User user) {
         UserDTO userDTO = new UserDTO();
+
         userDTO.setId(user.getId());
         userDTO.setFullName(user.getFullName());
         userDTO.setPassword(user.getPassword());

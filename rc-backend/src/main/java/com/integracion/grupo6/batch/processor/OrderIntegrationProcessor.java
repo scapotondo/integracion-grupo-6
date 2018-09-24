@@ -4,6 +4,7 @@ import com.integracion.grupo6.batch.adapter.OrderIntegrationAdapter;
 import com.integracion.grupo6.domain.Order;
 import com.integracion.grupo6.dto.OrderIntegrationDTO;
 import com.integracion.grupo6.exception.AlreadyIntegratedException;
+import com.integracion.grupo6.service.OrderService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.batch.item.ItemProcessor;
@@ -16,10 +17,19 @@ public class OrderIntegrationProcessor implements ItemProcessor<OrderIntegration
     private final Log logger = LogFactory.getLog(this.getClass());
 
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     private OrderIntegrationAdapter adapter;
 
     @Override
-    public Order process(OrderIntegrationDTO dto) throws Exception {
-        return adapter.adapt(dto);
+    public Order process(OrderIntegrationDTO dto) {
+        if (orderService.exists(dto.getId())) {
+            logger.warn(String.format("Ya existe una order con id %s", dto.getId()));
+            return null;
+        } else {
+            return adapter.adapt(dto);
+        }
     }
+
 }

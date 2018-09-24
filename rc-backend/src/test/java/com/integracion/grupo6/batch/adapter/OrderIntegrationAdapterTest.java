@@ -19,7 +19,7 @@ public class OrderIntegrationAdapterTest {
     private OrderIntegrationAdapter orderIntegrationAdapter;
 
     @Test
-    public void adapt() {
+    public void adaptOrder() {
         OrderIntegrationDTO dto = new OrderIntegrationDTO();
         dto.setId(515151L);
         dto.setClientEmail("email@domain.com");
