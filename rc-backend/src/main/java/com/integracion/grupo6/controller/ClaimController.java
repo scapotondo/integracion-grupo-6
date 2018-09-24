@@ -8,6 +8,7 @@ import com.integracion.grupo6.domain.ClaimOrigin;
 import com.integracion.grupo6.dto.ClaimDTO;
 import com.integracion.grupo6.dto.ClaimStatusDTO;
 import com.integracion.grupo6.dto.ClaimTypeDTO;
+import com.integracion.grupo6.exception.ClaimCreationException;
 import com.integracion.grupo6.service.ClaimOriginService;
 import com.integracion.grupo6.service.ClaimService;
 import com.integracion.grupo6.service.ClaimStatusService;
@@ -50,6 +51,11 @@ public class ClaimController {
 
     @PostMapping
     public Claim create(@RequestBody ClaimDTO claim, Principal principal){
-        return claimService.create(claim, principal.getName());
+        try {
+            return claimService.create(claim, principal.getName());
+        } catch (ClaimCreationException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
