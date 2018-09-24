@@ -1,8 +1,8 @@
- INSERT INTO
+/* INSERT INTO
   ENTIDAD(ID, NOMBRE)
 VALUES
   (1, 'Uno'),
-  (2, 'Dos');
+  (2, 'Dos');*/
 
 INSERT INTO USER_ROLE (ID, NAME) VALUES (1, 'ROLE_ADMIN'), (2, 'ROLE_USER');
 

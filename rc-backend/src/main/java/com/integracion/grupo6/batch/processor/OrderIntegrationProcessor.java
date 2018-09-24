@@ -20,12 +20,6 @@ public class OrderIntegrationProcessor implements ItemProcessor<OrderIntegration
 
     @Override
     public Order process(OrderIntegrationDTO dto) throws Exception {
-        try {
-            return adapter.adapt(dto);
-        } catch (AlreadyIntegratedException ex) {
-            logger.warn(ex.getMessage());
-        }
-        return null;
+        return adapter.adapt(dto);
     }
-
 }

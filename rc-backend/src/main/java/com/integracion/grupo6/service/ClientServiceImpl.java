@@ -17,7 +17,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client findByIdentification(String identification) {
         Optional<Client> optionalClient = clientRepository.findById(identification);
-        if(optionalClient.isPresent()) {
+        if (optionalClient.isPresent()) {
             return optionalClient.get();
         } else {
             throw new EntityNotFoundException("No se encontro el Client con Identification " + identification);
@@ -38,4 +38,5 @@ public class ClientServiceImpl implements ClientService {
     public Client save(Client client) {
         return clientRepository.save(client);
     }
+
 }
