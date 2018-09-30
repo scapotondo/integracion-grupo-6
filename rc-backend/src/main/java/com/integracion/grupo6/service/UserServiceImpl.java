@@ -25,10 +25,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserAdapter userAdapter;
 
+    public User create(User user) {
+        return userRepository.save(user);
+    }
+
     @Override
-    public void create(UserDTO user) {
+    public User create(UserDTO user) {
         User newUser = userAdapter.toUser(user);
-        userRepository.save(newUser);
+        return create(newUser);
     }
 
     @Override
@@ -44,7 +48,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long id) {
         User user = findById(id);
-        if(user != null){
+        if (user != null) {
             userRepository.delete(user);
         }
     }
@@ -53,7 +57,7 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) throws EntityNotFoundException {
         Optional<User> user = userRepository.findById(id);
 
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             return user.get();
         } else {
             throw new EntityNotFoundException("No se encontro al usuario con id " + id);
@@ -63,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> findAll() {
         List<UserDTO> users = new ArrayList<>();
-        for (User user: userRepository.findAll()) {
+        for (User user : userRepository.findAll()) {
             users.add(userAdapter.toDTO(user));
         }
 

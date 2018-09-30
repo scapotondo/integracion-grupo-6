@@ -55,7 +55,7 @@ public class ReclamosFtpServer {
         return listenerFactory.createListener();
     }
 
-    private UserManager getUserManager() throws FtpException {
+    private UserManager getUserManager() {
         PropertiesUserManagerFactory userManagerFactory = new PropertiesUserManagerFactory();
         userManagerFactory.setFile(new File("application.properties"));
         return userManagerFactory.createUserManager();
