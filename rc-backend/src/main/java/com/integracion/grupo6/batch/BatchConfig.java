@@ -23,7 +23,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import java.io.File;
 import java.util.Date;
@@ -78,12 +80,7 @@ public class BatchConfig {
     }
 
     @Bean
-    public ResourcelessTransactionManager transactionManager() {
-        return new ResourcelessTransactionManager();
-    }
-
-    @Bean
-    public MapJobRepositoryFactoryBean mapJobRepositoryFactoryBean(ResourcelessTransactionManager resourcelessTransactionManager) throws Exception {
+    public MapJobRepositoryFactoryBean mapJobRepositoryFactoryBean(PlatformTransactionManager resourcelessTransactionManager) throws Exception {
         MapJobRepositoryFactoryBean factoryBean = new MapJobRepositoryFactoryBean(resourcelessTransactionManager);
         factoryBean.afterPropertiesSet();
         return factoryBean;
