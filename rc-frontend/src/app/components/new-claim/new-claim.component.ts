@@ -26,6 +26,7 @@ export class NewClaimComponent implements OnInit {
   selectedOrigin: ClaimOrigin;
   createClaimFormGroup: FormGroup;
   orderDetailsFormGroup: FormGroup;
+  existentClaim: Claim;
 
   @ViewChild('stepper') stepper: MatStepper;
 
@@ -81,6 +82,10 @@ export class NewClaimComponent implements OnInit {
         that.errorMessage = 'El código de orden ingresado no existe';
       } else if (order.client != null && order.client.identification === that.clientIdentifier.toString()) {
         that.order = order;
+
+        that.claimService.getClaimByOrder(that.order.id.toString()).subscribe(claim => {
+          that.existentClaim = claim;
+        });
       } else {
         that.errorMessage = 'La orden no corresponde al DNI ingresado';
       }

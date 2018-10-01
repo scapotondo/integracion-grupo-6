@@ -68,4 +68,9 @@ public class ClaimController {
             return null;
         }
     }
+
+    @GetMapping
+    public Claim getClaimByOrder(String orderNumber){
+        return claimService.getClaimByOrder(orderNumber);
+    }
 }

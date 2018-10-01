@@ -31,6 +31,14 @@
           <mat-list-item *ngIf="order && order.status"> Estado: {{order.status.name}} </mat-list-item>
           <mat-list-item *ngIf="order && order.product"> Producto: {{order.product.description}} </mat-list-item>
       </mat-list>
+      <b *ngIf="existentClaim">Reclamo existente</b>
+      <mat-list *ngIf="existentClaim">
+          <mat-list-item> Id: {{existentClaim.id}} </mat-list-item>
+          <mat-list-item> Estado: {{existentClaim.status}} </mat-list-item>
+          <mat-list-item> Descripcion: {{existentClaim.description}} </mat-list-item>
+          <mat-list-item> Tipo: {{existentClaim.type}} </mat-list-item>
+          <mat-list-item> Origen: {{existentClaim.origin}} </mat-list-item>
+      </mat-list>
     <div>
       <button mat-button matStepperPrevious>Atras</button>
       <button mat-button matStepperNext *ngIf="errorMessage === ''">Siguiente</button>

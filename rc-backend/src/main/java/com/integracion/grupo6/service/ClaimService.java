@@ -14,4 +14,6 @@ public interface ClaimService {
     ClaimDTO findById(Long id) throws EntityNotFoundException;
 
     Claim create(ClaimDTO claimDto, String username) throws ClaimCreationException;
+
+    Claim getClaimByOrder(String orderNumber);
 }

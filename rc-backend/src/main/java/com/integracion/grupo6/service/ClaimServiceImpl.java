@@ -108,4 +108,9 @@ public class ClaimServiceImpl implements ClaimService {
 
         return claimRepository.save(claim);
     }
+    
+    public Claim getClaimByOrder(String orderNumber) {
+        Order order = orderRepository.getOne(Long.valueOf(orderNumber));
+        return claimRepository.findByOrder(order);
+    }
 }
