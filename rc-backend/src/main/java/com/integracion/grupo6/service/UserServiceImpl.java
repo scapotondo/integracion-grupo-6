@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(UserDTO user) {
-        User newUser = userAdapter.toUser(user);
+        User newUser = userAdapter.toEntity(user);
         return create(newUser);
     }
 

@@ -26,7 +26,7 @@ public class UserAdapterTest {
         dto.setPassword("123123123");
         dto.setUserRole("ROLE_ADMIN");
 
-        User user = userAdapter.toUser(dto);
+        User user = userAdapter.toEntity(dto);
 
         Assert.assertEquals(dto.getId(), user.getId());
         Assert.assertEquals(dto.getUsername(), user.getUsername());
