@@ -9,7 +9,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
-public class OrderStatusImpl implements OrderStatusService {
+public class OrderStatusServiceImpl implements OrderStatusService {
 
     private static final long DEFAULT_STATUS = 1L;
 
