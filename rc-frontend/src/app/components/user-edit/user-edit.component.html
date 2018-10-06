@@ -6,7 +6,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <textarea matInput placeholder="Username" [(ngModel)]="user.username" disabled></textarea>
+      <input matInput placeholder="Username" [(ngModel)]="user.username" disabled>
     </mat-form-field>
 
     <mat-form-field>
@@ -16,7 +16,6 @@
       </mat-select>
     </mat-form-field>
   </div>
-
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">NO</button>

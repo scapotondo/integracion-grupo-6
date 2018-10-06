@@ -2,6 +2,15 @@ table {
   width: 100%;
 }
 
+.addButton {
+  float: right;
+}
+
+.matAddButton {
+  display: block;
+  margin-right: 10%;
+}
+
 .mat-icon {
   cursor: pointer;
 }
