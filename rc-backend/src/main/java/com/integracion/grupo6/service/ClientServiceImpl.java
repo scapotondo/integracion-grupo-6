@@ -4,6 +4,7 @@ import com.integracion.grupo6.domain.Client;
 import com.integracion.grupo6.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client findByIdentification(String identification) {
         Optional<Client> optionalClient = clientRepository.findById(identification);
-        if(optionalClient.isPresent()) {
+        if (optionalClient.isPresent()) {
             return optionalClient.get();
         } else {
             throw new EntityNotFoundException("No se encontro el Client con Identification " + identification);
@@ -35,7 +36,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public Client save(Client client) {
         return clientRepository.save(client);
     }
+
 }

@@ -2,7 +2,6 @@ package com.integracion.grupo6.service;
 
 import com.integracion.grupo6.adapter.UserAdapter;
 import com.integracion.grupo6.domain.User;
-import com.integracion.grupo6.domain.UserRole;
 import com.integracion.grupo6.dto.UserDTO;
 import com.integracion.grupo6.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +25,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserAdapter userAdapter;
 
+    public User create(User user) {
+        return userRepository.save(user);
+    }
+
     @Override
-    public void create(UserDTO user) {
-        User newUser = new User();
-        newUser.setFullName(user.getFullName());
-        newUser.setPassword(user.getPassword());
-        newUser.setUserRole(userRoleService.findByName(user.getUserRole()));
-        newUser.setUsername(user.getUsername());
-        userRepository.save(newUser);
+    public User create(UserDTO user) {
+        User newUser = userAdapter.toEntity(user);
+        return create(newUser);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long id) {
         User user = findById(id);
-        if(user != null){
+        if (user != null) {
             userRepository.delete(user);
         }
     }
@@ -58,7 +57,7 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) throws EntityNotFoundException {
         Optional<User> user = userRepository.findById(id);
 
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             return user.get();
         } else {
             throw new EntityNotFoundException("No se encontro al usuario con id " + id);
@@ -68,8 +67,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> findAll() {
         List<UserDTO> users = new ArrayList<>();
-        for (User user: userRepository.findAll()) {
-            users.add(userAdapter.toUserDTO(user));
+        for (User user : userRepository.findAll()) {
+            users.add(userAdapter.toDTO(user));
         }
 
         return users;
@@ -82,7 +81,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO findDTOByUsername(String username) {
-        return userAdapter.toUserDTO(findByUsername(username));
+        return userAdapter.toDTO(findByUsername(username));
     }
 
 }
