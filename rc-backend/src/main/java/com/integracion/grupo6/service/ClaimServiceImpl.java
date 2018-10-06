@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import com.integracion.grupo6.domain.Order;
@@ -46,6 +48,18 @@ public class ClaimServiceImpl implements ClaimService {
 
     @Autowired
     private ClaimAdapter claimAdapter;
+
+
+    @Override
+    public List<ClaimDTO> findAll() throws EntityNotFoundException {
+        List<ClaimDTO> dtos = new ArrayList<>();
+
+        for (Claim claim : claimRepository.findAll()) {
+            dtos.add(claimAdapter.claimToDTO(claim));
+        }
+
+        return dtos;
+    }
 
     @Override
     public ClaimDTO findById(Long id) throws EntityNotFoundException {

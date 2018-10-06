@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+.addButton {
+  margin: 3% 0 0 46%;
+}
