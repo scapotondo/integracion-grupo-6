@@ -11,11 +11,13 @@ import {UserService} from "../../services/user.service";
 export class UserEditComponent implements OnInit {
 
   user: User;
+  fullName: string;
 
   constructor(public dialog: MatDialogRef<UserEditComponent>,
               public userService: UserService,
               @Inject(MAT_DIALOG_DATA) public data) {
     this.user = data;
+    this.fullName = this.user.fullName;
   }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class UserEditComponent implements OnInit {
   }
 
   onYesClick() {
+    this.user.fullName = this.fullName;
     this.userService.update(this.user).subscribe( response => {
       this.dialog.close({ data: this.user });
     });
