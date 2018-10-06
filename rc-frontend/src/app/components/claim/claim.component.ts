@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 export class ClaimComponent implements OnInit {
 
   claims: Claim[];
-  displayedColumns: string[] = ['origin', 'type', 'status', 'action'];
+  displayedColumns: string[] = ['description', 'origin', 'type', 'status', 'action'];
 
   constructor(private claimService: ClaimService,
               public uiContext: UIContext,
@@ -23,12 +23,17 @@ export class ClaimComponent implements OnInit {
   ngOnInit() {
     this.claimService.findAll().subscribe(data => {
       this.claims = data;
+      console.log(this.claims);
     });
   }
 
 
   addClaim() {
     this.router.navigate(['./new-claim'])
+  }
+
+  cancelClaim() {
+
   }
 
 }
