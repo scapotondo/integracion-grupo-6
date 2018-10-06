@@ -7,5 +7,14 @@ table {
 }
 
 .addButton {
+  float: right;
+}
+
+.matAddButton2 {
+  display: block;
+  margin-right: 10%;
+}
+
+.addButton {
   margin: 3% 0 0 46%;
 }
