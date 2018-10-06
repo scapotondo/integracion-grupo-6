@@ -70,7 +70,7 @@ public class ClaimController {
     }
 
     @GetMapping(path = {"/order/{orderNumber}"})
-    public Claim getClaimByOrder(@PathVariable String orderNumber){
+    public ClaimDTO getClaimByOrder(@PathVariable String orderNumber){
         return claimService.getClaimByOrder(orderNumber);
     }
 }

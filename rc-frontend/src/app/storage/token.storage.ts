@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {LoginUser} from "../models/loginUser.model";
-import {UserStored} from "../models/userStored.model";
+import {UserStored} from '../models/userStored.model';
 
 @Injectable()
 export class TokenStorage {

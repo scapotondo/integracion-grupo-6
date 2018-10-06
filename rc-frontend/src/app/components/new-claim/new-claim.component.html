@@ -35,10 +35,10 @@
       <b *ngIf="existentClaim">Reclamo existente</b>
       <mat-list *ngIf="existentClaim">
           <mat-list-item> Id: {{existentClaim.id}} </mat-list-item>
-          <mat-list-item> Estado: {{existentClaim.claimStatus.name}} </mat-list-item>
+          <mat-list-item> Estado: {{existentClaim.status.name}} </mat-list-item>
           <mat-list-item> Descripcion: {{existentClaim.description}} </mat-list-item>
-          <mat-list-item> Tipo: {{existentClaim.claimType.name}} </mat-list-item>
-          <mat-list-item> Origen: {{existentClaim.claimOrigin.name}} </mat-list-item>
+          <mat-list-item> Tipo: {{existentClaim.type.name}} </mat-list-item>
+          <mat-list-item> Origen: {{existentClaim.origin.name}} </mat-list-item>
       </mat-list>
     <div>
       <button mat-button matStepperPrevious>Atras</button>
