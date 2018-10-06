@@ -37,6 +37,10 @@ export class ClaimService {
     return this.http.get<ClaimOrigin[]>(this.claimUrl + 'origins');
   }
 
+  public getClaimByOrder(orderNbr: string): Observable<Claim> {
+    return this.http.get<Claim>(this.claimUrl + 'order/' + orderNbr);
+  }
+
   public create(claim) {
     return this.http.post<Claim>(this.claimUrl, claim);
   }

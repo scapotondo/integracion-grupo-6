@@ -108,4 +108,8 @@ public class ClaimServiceImpl implements ClaimService {
 
         return claimRepository.save(claim);
     }
+    
+    public ClaimDTO getClaimByOrder(String orderNumber) {
+        return claimAdapter.claimToDTO(claimRepository.findByOrderId(Long.valueOf(orderNumber)));
+    }
 }

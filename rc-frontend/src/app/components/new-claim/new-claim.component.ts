@@ -8,6 +8,7 @@ import { ClaimStatus } from '../../models/claimStatus.mode';
 import { ClaimType } from '../../models/claimType.model';
 import { ClaimOrigin } from '../../models/claimOrigin.model';
 import { Claim } from '../../models/claim.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-claim',
@@ -26,12 +27,14 @@ export class NewClaimComponent implements OnInit {
   selectedOrigin: ClaimOrigin;
   createClaimFormGroup: FormGroup;
   orderDetailsFormGroup: FormGroup;
+  existentClaim: Claim;
 
   @ViewChild('stepper') stepper: MatStepper;
 
   constructor(public _formBuilder: FormBuilder,
     private orderService: OrderService,
-    private claimService: ClaimService) {
+    private claimService: ClaimService,
+    private router: Router) {
 
     this.resetValues();
   }
@@ -70,6 +73,7 @@ export class NewClaimComponent implements OnInit {
   resetValues() {
     this.order = null;
     this.errorMessage = '';
+    this.existentClaim = null;
   }
 
   searchOrder() {
@@ -81,6 +85,10 @@ export class NewClaimComponent implements OnInit {
         that.errorMessage = 'El código de orden ingresado no existe';
       } else if (order.client != null && order.client.identification === that.clientIdentifier.toString()) {
         that.order = order;
+
+        that.claimService.getClaimByOrder(that.order.id.toString()).subscribe(claim => {
+          that.existentClaim = claim;
+        });
       } else {
         that.errorMessage = 'La orden no corresponde al DNI ingresado';
       }
@@ -110,7 +118,7 @@ export class NewClaimComponent implements OnInit {
     console.log(claim);
 
     this.claimService.create(claim).subscribe(
-      response => console.log(response),
+      response => this.router.navigate(['new-claim']),
       err => console.log(err)
     );
 
