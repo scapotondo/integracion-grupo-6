@@ -110,6 +110,10 @@ public class ClaimServiceImpl implements ClaimService {
     }
     
     public ClaimDTO getClaimByOrder(String orderNumber) {
-        return claimAdapter.claimToDTO(claimRepository.findByOrderId(Long.valueOf(orderNumber)));
+        Claim claim = claimRepository.findByOrderId(Long.valueOf(orderNumber));
+        if (claim != null)
+            return claimAdapter.claimToDTO(claim);
+
+        return null;
     }
 }
