@@ -8,6 +8,7 @@ import { ClaimStatus } from '../../models/claimStatus.mode';
 import { ClaimType } from '../../models/claimType.model';
 import { ClaimOrigin } from '../../models/claimOrigin.model';
 import { Claim } from '../../models/claim.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-claim',
@@ -32,7 +33,8 @@ export class NewClaimComponent implements OnInit {
 
   constructor(public _formBuilder: FormBuilder,
     private orderService: OrderService,
-    private claimService: ClaimService) {
+    private claimService: ClaimService,
+    private router: Router) {
 
     this.resetValues();
   }
@@ -71,6 +73,7 @@ export class NewClaimComponent implements OnInit {
   resetValues() {
     this.order = null;
     this.errorMessage = '';
+    this.existentClaim = null;
   }
 
   searchOrder() {
@@ -115,7 +118,7 @@ export class NewClaimComponent implements OnInit {
     console.log(claim);
 
     this.claimService.create(claim).subscribe(
-      response => console.log(response),
+      response => this.router.navigate(['new-claim']),
       err => console.log(err)
     );
 

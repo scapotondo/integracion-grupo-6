@@ -31,20 +31,21 @@
           <mat-list-item *ngIf="order && order.status"> Estado: {{order.status.name}} </mat-list-item>
           <mat-list-item *ngIf="order && order.product"> Producto: {{order.product.description}} </mat-list-item>
       </mat-list>
+      <br/>
       <b *ngIf="existentClaim">Reclamo existente</b>
       <mat-list *ngIf="existentClaim">
           <mat-list-item> Id: {{existentClaim.id}} </mat-list-item>
-          <mat-list-item> Estado: {{existentClaim.status}} </mat-list-item>
+          <mat-list-item> Estado: {{existentClaim.claimStatus.name}} </mat-list-item>
           <mat-list-item> Descripcion: {{existentClaim.description}} </mat-list-item>
-          <mat-list-item> Tipo: {{existentClaim.type}} </mat-list-item>
-          <mat-list-item> Origen: {{existentClaim.origin}} </mat-list-item>
+          <mat-list-item> Tipo: {{existentClaim.claimType.name}} </mat-list-item>
+          <mat-list-item> Origen: {{existentClaim.claimOrigin.name}} </mat-list-item>
       </mat-list>
     <div>
       <button mat-button matStepperPrevious>Atras</button>
-      <button mat-button matStepperNext *ngIf="errorMessage === ''">Siguiente</button>
+      <button mat-button matStepperNext *ngIf="errorMessage === '' && existentClaim === null">Siguiente</button>
     </div>
   </mat-step>
-  <mat-step [stepControl]="createClaimFormGroup" *ngIf="errorMessage === ''">
+  <mat-step [stepControl]="createClaimFormGroup">
       <form [formGroup]="createClaimFormGroup">
           <ng-template matStepLabel>Crear Reclamo</ng-template>
           <div class="container">
