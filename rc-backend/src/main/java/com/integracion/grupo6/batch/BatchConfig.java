@@ -103,20 +103,21 @@ public class BatchConfig {
         logger.warn("runScheduledJob()");
         String[] files = fileUtils.listCsvFiles(homeDir);
         String fullPath;
+        if(files != null) {
+            for (String file : files) {
+                fullPath = homeDir + File.separator + file;
+                logger.info(String.format("Scheduled Job Started for file: '%s'", fullPath));
+                JobParameters param = new JobParametersBuilder()
+                        .addString("JobID", String.valueOf(System.currentTimeMillis()))
+                        .addString("filePath", fullPath)
+                        .toJobParameters();
+                JobExecution execution = jobLauncher.run(csvFileToDatabaseJob(), param);
 
-        for (String file : files) {
-            fullPath = homeDir + File.separator + file;
-            logger.info(String.format("Scheduled Job Started for file: '%s'", fullPath));
-            JobParameters param = new JobParametersBuilder()
-                    .addString("JobID", String.valueOf(System.currentTimeMillis()))
-                    .addString("filePath", fullPath)
-                    .toJobParameters();
-            JobExecution execution = jobLauncher.run(csvFileToDatabaseJob(), param);
-
-            if (execution.getStatus() == BatchStatus.COMPLETED) {
-                fileUtils.deleteCsv(fullPath);
+                if (execution.getStatus() == BatchStatus.COMPLETED) {
+                    fileUtils.deleteCsv(fullPath);
+                }
+                logger.info(String.format("Scheduled Job finished for file: '%s' with status: %s", fullPath, execution.getStatus()));
             }
-            logger.info(String.format("Scheduled Job finished for file: '%s' with status: %s", fullPath, execution.getStatus()));
         }
 
     }

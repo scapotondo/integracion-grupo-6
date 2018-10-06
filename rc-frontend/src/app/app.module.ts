@@ -22,6 +22,7 @@ import { UserDeleteComponent } from './components/user-delete/user-delete.compon
 import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material";
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
+import { ClaimComponent } from './components/claim/claim.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
     UserDeleteComponent,
     UserComponent,
     UserEditComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    ClaimComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),

@@ -39,6 +39,11 @@ public class ClaimController {
         return claimService.findById(id);
     }
 
+    @GetMapping()
+    public List<ClaimDTO> getAll() {
+        return claimService.findAll();
+    }
+
     @GetMapping(path = {"/types"})
     public List<ClaimTypeDTO> findAllTypes() {
         return claimTypeService.findAll();
