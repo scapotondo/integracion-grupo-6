@@ -19,7 +19,7 @@ import {UserService} from "./services/user.service";
 import { OrderService } from './services/order.service';
 import { ClaimService } from './services/claim.service';
 import { UserDeleteComponent } from './components/user-delete/user-delete.component';
-import {MAT_DIALOG_DATA, MatDialogModule} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialogModule, MatTableModule} from "@angular/material";
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { ClaimComponent } from './components/claim/claim.component';
@@ -43,11 +43,12 @@ import { ClaimComponent } from './components/claim/claim.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     UIContext,
-    TokenStorage,
+    TokenStorage  ,
     UserService,
     AuthService,
     {

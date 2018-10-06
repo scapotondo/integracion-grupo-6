@@ -21,6 +21,10 @@ export class ClaimService {
   constructor(private http: HttpClient) {
   }
 
+  public findAll(): Observable<Claim[]> {
+    return this.http.get<Claim[]>(this.claimUrl);
+  }
+
   public findStatuses(): Observable<ClaimStatus[]> {
     return this.http.get<ClaimStatus[]>(this.claimUrl + 'statuses');
   }
