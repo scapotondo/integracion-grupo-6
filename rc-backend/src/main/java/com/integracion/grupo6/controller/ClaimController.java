@@ -32,6 +32,11 @@ public class ClaimController {
     @Autowired
     private ClaimOriginService claimOriginService;
 
+    @GetMapping(path = {"/{id}"})
+    public ClaimDTO getById(@PathVariable Long id) {
+        return claimService.findById(id);
+    }
+
     @GetMapping(path = {"/types"})
     public List<ClaimTypeDTO> findAllTypes() {
         return claimTypeService.findAll();

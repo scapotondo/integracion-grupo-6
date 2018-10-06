@@ -7,7 +7,7 @@ import javax.persistence.EntityNotFoundException;
 
 public interface ClaimService {
 
-    Claim findById(Long id) throws EntityNotFoundException;
+    ClaimDTO findById(Long id) throws EntityNotFoundException;
 
     Claim create(ClaimDTO claimDto);
 }
