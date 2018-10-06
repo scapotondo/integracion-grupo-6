@@ -4,6 +4,7 @@ import com.integracion.grupo6.domain.Client;
 import com.integracion.grupo6.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
@@ -35,6 +36,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Transactional
     public Client save(Client client) {
         return clientRepository.save(client);
     }

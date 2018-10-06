@@ -8,7 +8,9 @@ import java.util.Optional;
 
 public interface UserService {
 
-    void create(UserDTO user);
+    User create(User user);
+
+    User create(UserDTO user);
 
     void update(UserDTO user);
 
