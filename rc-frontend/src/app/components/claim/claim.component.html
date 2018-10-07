@@ -25,7 +25,7 @@
     <mat-cell *matCellDef="let element">
       <mat-toolbar color="none">
         <mat-toolbar-row>
-          <mat-icon (click)="cancelClaim(element)" *ngIf="element.status != 'CANCELADO'">highlight_off</mat-icon>
+          <mat-icon (click)="cancelClaim(element)" *ngIf="element.status.name != 'CANCELADO'">highlight_off</mat-icon>
         </mat-toolbar-row>
       </mat-toolbar>
     </mat-cell>

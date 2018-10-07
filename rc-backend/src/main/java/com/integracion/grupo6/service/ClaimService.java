@@ -16,4 +16,6 @@ public interface ClaimService {
     ClaimDTO create(ClaimDTO claimDto, String username) throws ClaimCreationException;
 
     ClaimDTO cancel(Long id) throws ClaimCreationException;
+
+    public ClaimDTO getClaimByOrder(String orderNumber);
 }

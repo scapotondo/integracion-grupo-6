@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Claim} from "../../models/claim.model";
 import {ClaimService} from "../../services/claim.service";
 import {UIContext} from "../../ui.context";
@@ -16,7 +16,8 @@ export class ClaimComponent implements OnInit {
 
   constructor(private claimService: ClaimService,
               public uiContext: UIContext,
-              private router: Router) {
+              private router: Router,
+              private changeDetectorRefs: ChangeDetectorRef) {
     this.uiContext.setTittle('Reclamos');
   }
 
@@ -38,7 +39,13 @@ export class ClaimComponent implements OnInit {
       const index: number = claims2.findIndex(x => x.id == data.id);
       claims2[index] = data;
       this.claims = claims2;
+      this.refresh();
+
     });
+  }
+
+  refresh() {
+      this.changeDetectorRefs.detectChanges();
   }
 
 }
