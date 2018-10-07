@@ -3,8 +3,10 @@ package com.integracion.grupo6.controller;
 import java.security.Principal;
 import java.util.List;
 
+import com.integracion.grupo6.adapter.ClaimAdapter;
 import com.integracion.grupo6.domain.Claim;
 import com.integracion.grupo6.domain.ClaimOrigin;
+import com.integracion.grupo6.domain.Order;
 import com.integracion.grupo6.dto.ClaimDTO;
 import com.integracion.grupo6.dto.ClaimStatusDTO;
 import com.integracion.grupo6.dto.ClaimTypeDTO;
@@ -13,6 +15,7 @@ import com.integracion.grupo6.service.ClaimOriginService;
 import com.integracion.grupo6.service.ClaimService;
 import com.integracion.grupo6.service.ClaimStatusService;
 import com.integracion.grupo6.service.ClaimTypeService;
+import com.integracion.grupo6.service.EmailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +36,12 @@ public class ClaimController {
 
     @Autowired
     private ClaimOriginService claimOriginService;
+
+    @Autowired
+    private ClaimAdapter claimAdapter;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping(path = {"/{id}"})
     public ClaimDTO getById(@PathVariable Long id) {
@@ -70,13 +79,29 @@ public class ClaimController {
     }
 
     @PostMapping
-    public ClaimDTO create(@RequestBody ClaimDTO claim, Principal principal){
+    public ClaimDTO create(@RequestBody ClaimDTO claimDTO, Principal principal){
         try {
-            return claimService.create(claim, principal.getName());
+            Claim claim = claimService.create(claimDTO, principal.getName());
+            if (claim != null) {
+                emailService.sendMessage(claim.getOrder().getClient().getEmail(), "Nuevo reclamo por compra", newClaimEmail(claim));
+            }   
+
+            return claimAdapter.claimToDTO(claim);
         } catch (ClaimCreationException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private String newClaimEmail(Claim claim) {
+        Order order = claim.getOrder();
+
+        return String.format("Hola %s,\n" + 
+            "Se ha creado un reclamo respecto de tu orden '%s'.\n" +
+            "Detalles del reclamo:\n" +
+            "- Numero de reclamo: %s\n" +
+            "- Descripcion: %s\n\n" +
+            "Te enviaremos un mail cuando el estado de tu reclamo cambie.\n Gracias!", order.getClient().getFullName(), order.getId(), claim.getId(), claim.getDescription());
     }
 
     @GetMapping(path = {"/order/{orderNumber}"})

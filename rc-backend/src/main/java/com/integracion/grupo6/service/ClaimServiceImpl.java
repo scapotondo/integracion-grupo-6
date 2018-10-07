@@ -66,7 +66,7 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     @Override
-    public ClaimDTO create(ClaimDTO claimDto, String username) throws ClaimCreationException {
+    public Claim create(ClaimDTO claimDto, String username) throws ClaimCreationException {
         ClaimStatus status = claimStatusRepository.getOne(0L);
         Optional<ClaimType> type = claimTypeRepository.findById(claimDto.getType().getId());
         Optional<Order> order = orderRepository.findById(claimDto.getOrderId());
@@ -100,7 +100,7 @@ public class ClaimServiceImpl implements ClaimService {
             claim.setClaimStatus(status);
         }
 
-        return claimAdapter.claimToDTO(claimRepository.save(claim));
+        return claimRepository.save(claim);
     }
 
     @Override

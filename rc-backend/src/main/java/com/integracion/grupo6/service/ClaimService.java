@@ -13,7 +13,7 @@ public interface ClaimService {
 
     ClaimDTO findById(Long id) throws EntityNotFoundException;
 
-    ClaimDTO create(ClaimDTO claimDto, String username) throws ClaimCreationException;
+    Claim create(ClaimDTO claimDto, String username) throws ClaimCreationException;
 
     ClaimDTO cancel(Long id) throws ClaimCreationException;
 
