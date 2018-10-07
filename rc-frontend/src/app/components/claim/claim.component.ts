@@ -36,7 +36,7 @@ export class ClaimComponent implements OnInit {
 
 
   addClaim() {
-    this.router.navigate(['./new-claim'])
+    this.router.navigate(['./new-claim']);
   }
 
   cancelClaim(claim) {
