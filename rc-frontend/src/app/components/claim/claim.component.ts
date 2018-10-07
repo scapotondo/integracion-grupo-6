@@ -1,8 +1,11 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Claim} from "../../models/claim.model";
 import {ClaimService} from "../../services/claim.service";
 import {UIContext} from "../../ui.context";
 import {Router} from "@angular/router";
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {UserDeleteComponent} from "../user-delete/user-delete.component";
+import {ClaimCancelDialogComponent} from "../claim-cancel-dialog/claim-cancel-dialog.component";
 
 @Component({
   selector: 'app-claim',
@@ -13,12 +16,15 @@ export class ClaimComponent implements OnInit {
 
   claims: Claim[];
   displayedColumns: string[] = ['description', 'origin', 'type', 'status', 'action'];
+  dialogConfig = new MatDialogConfig();
 
   constructor(private claimService: ClaimService,
               public uiContext: UIContext,
               private router: Router,
-              private changeDetectorRefs: ChangeDetectorRef) {
+              public dialog: MatDialog) {
     this.uiContext.setTittle('Reclamos');
+    this.dialogConfig.disableClose = true;
+    this.dialogConfig.autoFocus = true;
   }
 
   ngOnInit() {
@@ -34,18 +40,17 @@ export class ClaimComponent implements OnInit {
   }
 
   cancelClaim(claim) {
-    this.claimService.cancel(claim).subscribe(data => {
-      let claims2 = this.claims;
-      const index: number = claims2.findIndex(x => x.id == data.id);
-      claims2[index] = data;
-      this.claims = claims2;
-      this.refresh();
-
-    });
-  }
-
-  refresh() {
-      this.changeDetectorRefs.detectChanges();
+    let that = this;
+    this.dialog.open(ClaimCancelDialogComponent,{
+      width: '250px',
+      data: claim
+    }).afterClosed()
+      .subscribe(response => {
+        let claims2 = that.claims;
+        const index: number = claims2.findIndex(x => x.id == response.data.id);
+        claims2[index] = response.data;
+        that.claims = claims2;
+      });
   }
 
 }

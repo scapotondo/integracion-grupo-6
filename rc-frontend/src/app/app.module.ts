@@ -23,6 +23,7 @@ import {MAT_DIALOG_DATA, MatDialogModule, MatTableModule} from "@angular/materia
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { ClaimComponent } from './components/claim/claim.component';
+import { ClaimCancelDialogComponent } from './components/claim-cancel-dialog/claim-cancel-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ClaimComponent } from './components/claim/claim.component';
     UserComponent,
     UserEditComponent,
     UserCreateComponent,
-    ClaimComponent
+    ClaimComponent,
+    ClaimCancelDialogComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -64,7 +66,7 @@ import { ClaimComponent } from './components/claim/claim.component';
     ClaimService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [UserDeleteComponent, UserEditComponent, UserCreateComponent],
-  exports: [UserDeleteComponent, UserEditComponent, UserCreateComponent]
+  entryComponents: [UserDeleteComponent, UserEditComponent, UserCreateComponent, ClaimCancelDialogComponent],
+  exports: [UserDeleteComponent, UserEditComponent, UserCreateComponent, ClaimCancelDialogComponent]
 })
 export class AppModule { }

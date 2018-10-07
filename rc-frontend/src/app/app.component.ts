@@ -16,9 +16,8 @@ export class AppComponent {
 
     if(this.tokenStorage.getUser() == null){
       this.router.navigate(['login']);
-
-    } else {
-      this.router.navigate(['new-claim']);
+    } else if (this.router.url == '/') {
+      this.router.navigate(['claim']);
     }
   }
 }

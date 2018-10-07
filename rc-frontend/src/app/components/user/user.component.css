@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  margin-top: 2%;
 }
 
 .addButton {
@@ -16,5 +17,5 @@ table {
 }
 
 .addButton {
-  margin: 3% 0 0 46%;
+  margin: 3% 45% 0 46%;
 }
