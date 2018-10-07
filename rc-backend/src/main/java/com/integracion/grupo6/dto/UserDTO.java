@@ -1,9 +1,8 @@
 package com.integracion.grupo6.dto;
 
-import com.integracion.grupo6.domain.User;
-import com.integracion.grupo6.domain.UserRole;
+import java.io.Serializable;
 
-public class UserDTO {
+public class UserDTO implements Serializable {
 
     private Long id;
     private String fullName;

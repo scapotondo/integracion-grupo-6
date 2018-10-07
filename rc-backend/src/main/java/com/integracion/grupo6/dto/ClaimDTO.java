@@ -2,7 +2,9 @@ package com.integracion.grupo6.dto;
 
 import com.integracion.grupo6.domain.ClaimOrigin;
 
-public class ClaimDTO {
+import java.io.Serializable;
+
+public class ClaimDTO implements Serializable {
 
     private Long id;
     private ClaimOrigin origin;

@@ -4,27 +4,21 @@ import com.integracion.grupo6.adapter.ClaimAdapter;
 import com.integracion.grupo6.domain.Claim;
 import com.integracion.grupo6.domain.ClaimStatus;
 import com.integracion.grupo6.domain.ClaimType;
-import com.integracion.grupo6.domain.Client;
 import com.integracion.grupo6.dto.ClaimDTO;
 import com.integracion.grupo6.exception.ClaimCreationException;
 import com.integracion.grupo6.repository.ClaimRepository;
 import com.integracion.grupo6.repository.ClaimStatusRepository;
 import com.integracion.grupo6.repository.ClaimTypeRepository;
-import com.integracion.grupo6.repository.ClientRepository;
 import com.integracion.grupo6.repository.OrderRepository;
 import com.integracion.grupo6.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import com.integracion.grupo6.domain.Order;
 import com.integracion.grupo6.domain.User;
 
@@ -72,7 +66,7 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     @Override
-    public Claim create(ClaimDTO claimDto, String username) throws ClaimCreationException {
+    public ClaimDTO create(ClaimDTO claimDto, String username) throws ClaimCreationException {
         ClaimStatus status = claimStatusRepository.getOne(0L);
         Optional<ClaimType> type = claimTypeRepository.findById(claimDto.getType().getId());
         Optional<Order> order = orderRepository.findById(claimDto.getOrderId());
@@ -106,7 +100,24 @@ public class ClaimServiceImpl implements ClaimService {
             claim.setClaimStatus(status);
         }
 
-        return claimRepository.save(claim);
+        return claimAdapter.claimToDTO(claimRepository.save(claim));
+    }
+
+    @Override
+    public ClaimDTO cancel(Long id) {
+        Optional<Claim> optionalClaim = claimRepository.findById(id);
+        Claim claim;
+        if(optionalClaim.isPresent()) {
+            claim = optionalClaim.get();
+            List<ClaimStatus> statusList = claimStatusRepository.findAll();
+            for (ClaimStatus claimStatus : statusList) {
+                if(claimStatus.getName().equals("CANCELADO")) {
+                    claim.setClaimStatus(claimStatus);
+                }
+            }
+            return claimAdapter.claimToDTO(claimRepository.save(claim));
+        }
+        return null;
     }
     
     public ClaimDTO getClaimByOrder(String orderNumber) {

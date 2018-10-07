@@ -1,6 +1,8 @@
 package com.integracion.grupo6.dto;
 
-public class ClaimStatusDTO {
+import java.io.Serializable;
+
+public class ClaimStatusDTO implements Serializable {
     
     public ClaimStatusDTO () { }
     

@@ -1,6 +1,8 @@
 package com.integracion.grupo6.dto;
 
-public class OrderIntegrationDTO {
+import java.io.Serializable;
+
+public class OrderIntegrationDTO implements Serializable {
 
     private Long id;
 

@@ -1,6 +1,8 @@
 package com.integracion.grupo6.dto;
 
-public class LoginUserDTO {
+import java.io.Serializable;
+
+public class LoginUserDTO implements Serializable {
 
     private String username;
 

@@ -118,7 +118,7 @@ export class NewClaimComponent implements OnInit {
     console.log(claim);
 
     this.claimService.create(claim).subscribe(
-      response => this.router.navigate(['new-claim']),
+      response => this.router.navigate(['./claim']),
       err => console.log(err)
     );
 

@@ -44,4 +44,8 @@ export class ClaimService {
   public create(claim) {
     return this.http.post<Claim>(this.claimUrl, claim);
   }
+
+  public cancel(claim) {
+    return this.http.get<Claim>(this.claimUrl + 'cancel/' + claim.id);
+  }
 }

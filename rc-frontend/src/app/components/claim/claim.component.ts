@@ -32,8 +32,13 @@ export class ClaimComponent implements OnInit {
     this.router.navigate(['./new-claim'])
   }
 
-  cancelClaim() {
-
+  cancelClaim(claim) {
+    this.claimService.cancel(claim).subscribe(data => {
+      let claims2 = this.claims;
+      const index: number = claims2.findIndex(x => x.id == data.id);
+      claims2[index] = data;
+      this.claims = claims2;
+    });
   }
 
 }

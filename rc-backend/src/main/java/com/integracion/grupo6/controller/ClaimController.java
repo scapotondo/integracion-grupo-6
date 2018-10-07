@@ -44,6 +44,16 @@ public class ClaimController {
         return claimService.findAll();
     }
 
+    @GetMapping(path = {"/cancel/{id}"})
+    public ClaimDTO cancelClaim(@PathVariable Long id) {
+        try {
+            return claimService.cancel(id);
+        } catch (ClaimCreationException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @GetMapping(path = {"/types"})
     public List<ClaimTypeDTO> findAllTypes() {
         return claimTypeService.findAll();
@@ -60,7 +70,7 @@ public class ClaimController {
     }
 
     @PostMapping
-    public Claim create(@RequestBody ClaimDTO claim, Principal principal){
+    public ClaimDTO create(@RequestBody ClaimDTO claim, Principal principal){
         try {
             return claimService.create(claim, principal.getName());
         } catch (ClaimCreationException e) {

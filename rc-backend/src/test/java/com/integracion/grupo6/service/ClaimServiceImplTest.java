@@ -33,7 +33,7 @@ public class ClaimServiceImplTest {
         dto.setClientIdentification("77777777");
         dto.setOrigin(null);
 
-        Claim claim = claimService.create(dto, TEST_USERNAME);
+        ClaimDTO claim = claimService.create(dto, TEST_USERNAME);
 
         Assert.notNull(claim);
     }

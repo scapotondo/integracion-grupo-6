@@ -1,6 +1,8 @@
 package com.integracion.grupo6.dto;
 
-public class EntidadDTO {
+import java.io.Serializable;
+
+public class EntidadDTO implements Serializable {
 
     private Long id;
 
