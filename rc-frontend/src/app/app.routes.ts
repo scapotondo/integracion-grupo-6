@@ -3,6 +3,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NewClaimComponent } from './components/new-claim/new-claim.component';
 import {UserComponent} from './components/user/user.component';
 import {ClaimComponent} from "./components/claim/claim.component";
+import {NewClaimClientComponent} from "./components/new-claim-client/new-claim-client.component";
 
 export const AppRoutes: Routes = [
 
@@ -24,6 +25,11 @@ export const AppRoutes: Routes = [
   {
     path: 'claim',
     component: ClaimComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'web-client/create-claim',
+    component: NewClaimClientComponent,
     pathMatch: 'full'
   }
 

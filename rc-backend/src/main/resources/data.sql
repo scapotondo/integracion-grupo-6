@@ -36,6 +36,22 @@ INSERT INTO USER_ROLE (ID, NAME) VALUES (1, 'ROLE_ADMIN'), (2, 'ROLE_USER');
   1
   );
 
+
+   INSERT INTO
+  USER_(
+  ID,
+  FULL_NAME,
+  PASSWORD,
+  USERNAME,
+  USER_ROLE_ID
+  ) VALUES (
+  3,
+  'Cliente Web',
+  '$2a$10$U63eeYBEQfuDYacvgt6xMe8JS5vwM6sB9g6TfncEFRNjZhQy5L5LS',
+  'webClient',
+  1
+  );
+
 INSERT INTO CLAIM_TYPE (NAME, LOGISTICS) VALUES ('Producto dañado', false);
 
 INSERT INTO CLAIM_STATUS (ID, NAME) VALUES (0, 'PENDIENTE');

@@ -1,0 +1,72 @@
+<mat-vertical-stepper [linear]="true" #stepper>
+  <mat-step label="firstStep" [stepControl]="orderDetailsFormGroup">
+    <form [formGroup]="orderDetailsFormGroup">
+      <ng-template matStepLabel>Buscar Pedido</ng-template>
+      <div>
+        <mat-form-field>
+          <input matInput type="number" placeholder="DNI Cliente" formControlName="clientId" [(ngModel)]="clientIdentifier" required>
+        </mat-form-field>
+        <mat-form-field style="margin-left: 30px;">
+          <input matInput placeholder="Número de pedido" formControlName="orderNbr" [(ngModel)]="orderNumber" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step label="searchOrder">
+    <ng-template matStepLabel>Detalles de pedido</ng-template>
+    <h4 *ngIf="errorMessage != ''">Error: {{ errorMessage }}</h4>
+    <b *ngIf="errorMessage === ''">Cliente</b>
+    <mat-list>
+      <mat-list-item *ngIf="order"> Nombre:  {{ order.client.fullName}} </mat-list-item>
+      <mat-list-item *ngIf="order"> DNI: {{order.client.identification}} </mat-list-item>
+      <mat-list-item *ngIf="order"> Email: {{order.client.email}} </mat-list-item>
+    </mat-list>
+    <br/>
+    <b *ngIf="errorMessage === ''">Orden</b>
+    <mat-list>
+      <mat-list-item *ngIf="order"> Orden: {{order.id}} </mat-list-item>
+      <mat-list-item *ngIf="order && order.status"> Estado: {{order.status.name}} </mat-list-item>
+      <mat-list-item *ngIf="order && order.product"> Producto: {{order.product.description}} </mat-list-item>
+    </mat-list>
+    <br/>
+    <b *ngIf="existentClaim">Reclamo existente</b>
+    <mat-list *ngIf="existentClaim">
+      <mat-list-item> Id: {{existentClaim.id}} </mat-list-item>
+      <mat-list-item> Estado: {{existentClaim.status.name}} </mat-list-item>
+      <mat-list-item> Descripcion: {{existentClaim.description}} </mat-list-item>
+      <mat-list-item> Tipo: {{existentClaim.type.name}} </mat-list-item>
+      <mat-list-item> Origen: {{existentClaim.origin}} </mat-list-item>
+    </mat-list>
+    <div>
+      <button mat-button matStepperPrevious>Atras</button>
+      <button mat-button matStepperNext *ngIf="errorMessage === '' && existentClaim === null">Siguiente</button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="createClaimFormGroup">
+    <form [formGroup]="createClaimFormGroup">
+      <ng-template matStepLabel>Crear Reclamo</ng-template>
+      <div class="container">
+
+        <mat-form-field style="width: 200px;">
+          <mat-select placeholder="Tipo de reclamo" formControlName="typeCombo" required [(ngModel)]="selectedType">
+            <mat-option *ngFor="let type of this.types" [value]="type">
+              {{type.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field style="width: 700px;">
+          <textarea matInput placeholder="Descripción" [(ngModel)]="claimDescription" formControlName="textDescription" required></textarea>
+        </mat-form-field>
+
+        <div>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button (click)="createClaim()">Crear Reclamo</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+</mat-vertical-stepper>

@@ -24,6 +24,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { ClaimComponent } from './components/claim/claim.component';
 import { ClaimCancelDialogComponent } from './components/claim-cancel-dialog/claim-cancel-dialog.component';
+import { NewClaimClientComponent } from './components/new-claim-client/new-claim-client.component';
+import { ClaimSearchComponent } from './components/claim-search/claim-search.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ClaimCancelDialogComponent } from './components/claim-cancel-dialog/cla
     UserEditComponent,
     UserCreateComponent,
     ClaimComponent,
-    ClaimCancelDialogComponent
+    ClaimCancelDialogComponent,
+    NewClaimClientComponent,
+    ClaimSearchComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -66,7 +70,19 @@ import { ClaimCancelDialogComponent } from './components/claim-cancel-dialog/cla
     ClaimService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [UserDeleteComponent, UserEditComponent, UserCreateComponent, ClaimCancelDialogComponent],
-  exports: [UserDeleteComponent, UserEditComponent, UserCreateComponent, ClaimCancelDialogComponent]
+  entryComponents: [
+    UserDeleteComponent,
+    UserEditComponent,
+    UserCreateComponent,
+    ClaimCancelDialogComponent,
+    ClaimSearchComponent
+  ],
+  exports: [
+    UserDeleteComponent,
+    UserEditComponent,
+    UserCreateComponent,
+    ClaimCancelDialogComponent,
+    ClaimSearchComponent
+  ]
 })
 export class AppModule { }

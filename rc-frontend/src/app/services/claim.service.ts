@@ -45,6 +45,10 @@ export class ClaimService {
     return this.http.post<Claim>(this.claimUrl, claim);
   }
 
+  public webCreate(claim) {
+    return this.http.post<Claim>(this.claimUrl + "webclient", claim);
+  }
+
   public cancel(claim) {
     return this.http.get<Claim>(this.claimUrl + 'cancel/' + claim.id);
   }

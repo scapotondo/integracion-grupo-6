@@ -2,6 +2,7 @@ import { Component, ComponentFactoryResolver } from '@angular/core';
 import {UIContext} from "./ui.context";
 import {TokenStorage} from "./storage/token.storage";
 import { Router } from '@angular/router';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,12 @@ export class AppComponent {
 
   constructor(public uiContext: UIContext,
               public tokenStorage: TokenStorage,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
 
-    if(this.tokenStorage.getUser() == null){
+    if(this.tokenStorage.getUser() == null && this.location.path() != '/web-client/create-claim'){
       this.router.navigate(['login']);
-    } else if (this.router.url == '/') {
+    } else if (this.location.path() == '/') {
       this.router.navigate(['claim']);
     }
   }

@@ -80,11 +80,21 @@ public class ClaimController {
 
     @PostMapping
     public ClaimDTO create(@RequestBody ClaimDTO claimDTO, Principal principal){
+        return createClaim(claimDTO, principal.getName());
+    }
+
+    @PostMapping(path = "/webclient")
+    public ClaimDTO createWebClient(@RequestBody ClaimDTO claimDTO, Principal principal){
+        claimDTO.setOrigin(ClaimOrigin.WEB);
+        return createClaim(claimDTO, "webClient");
+    }
+
+    private ClaimDTO createClaim(ClaimDTO claimDTO, String creator) {
         try {
-            Claim claim = claimService.create(claimDTO, principal.getName());
+            Claim claim = claimService.create(claimDTO, creator);
             if (claim != null) {
                 emailService.sendMessage(claim.getOrder().getClient().getEmail(), "Nuevo reclamo por compra", newClaimEmail(claim));
-            }   
+            }
 
             return claimAdapter.claimToDTO(claim);
         } catch (ClaimCreationException e) {
