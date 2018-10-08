@@ -15,7 +15,7 @@
       </mat-list-item>
       <mat-divider></mat-divider>
 
-      <mat-list-item routerLink="user">
+      <mat-list-item routerLink="user" *ngIf="authorized">
         <mat-icon>account_circle</mat-icon>
         <a>ABM usuarios</a>
       </mat-list-item>
@@ -23,6 +23,11 @@
       <mat-list-item routerLink="claim">
         <mat-icon>folder</mat-icon>
         <a>Reclamos</a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="login">
+        <mat-icon>input</mat-icon>
+        <a (click)="logOut()">Log out</a>
       </mat-list-item>
 
       <!-- <mat-divider></mat-divider>

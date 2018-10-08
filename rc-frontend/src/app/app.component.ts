@@ -11,15 +11,26 @@ import {Location} from "@angular/common";
 })
 export class AppComponent {
 
+  authorized: boolean;
+
   constructor(public uiContext: UIContext,
               public tokenStorage: TokenStorage,
               private router: Router,
               private location: Location) {
-
+    this.authorized = false;
     if(this.tokenStorage.getUser() == null && this.location.path() != '/web-client/create-claim'){
       this.router.navigate(['login']);
     } else if (this.location.path() == '/') {
       this.router.navigate(['claim']);
     }
+
+    if(this.tokenStorage.getUser() != undefined) {
+      this.authorized = (this.tokenStorage.getUser().userRol == 'ROLE_ADMIN');
+    }
+  }
+
+  logOut() {
+    this.tokenStorage.signOut();
+    this.router.navigate(['login']);
   }
 }
