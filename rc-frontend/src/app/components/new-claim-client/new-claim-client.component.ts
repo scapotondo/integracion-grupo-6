@@ -108,7 +108,6 @@ export class NewClaimClientComponent implements OnInit {
       orderId: this.order.id,
       clientIdentification: this.order.client.identification
     };
-    console.log(claim)
 
     this.claimService.webCreate(claim).subscribe(
       response => this.router.navigate(['./new-claim']),

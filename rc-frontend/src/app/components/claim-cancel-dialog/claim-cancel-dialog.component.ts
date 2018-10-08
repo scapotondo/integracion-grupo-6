@@ -30,7 +30,7 @@ export class ClaimCancelDialogComponent implements OnInit {
 
   onYesClick() {
     this.claimService.cancel(this.claim).subscribe( response => {
-      this.dialog.close({ data: this.claim });
+      this.dialog.close({ data: response });
     });
 
   }

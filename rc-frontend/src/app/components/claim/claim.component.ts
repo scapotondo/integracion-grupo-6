@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Claim} from "../../models/claim.model";
 import {ClaimService} from "../../services/claim.service";
 import {UIContext} from "../../ui.context";
 import {Router} from "@angular/router";
 import {MatDialog, MatDialogConfig} from "@angular/material";
-import {UserDeleteComponent} from "../user-delete/user-delete.component";
 import {ClaimCancelDialogComponent} from "../claim-cancel-dialog/claim-cancel-dialog.component";
 
 @Component({
@@ -21,7 +20,8 @@ export class ClaimComponent implements OnInit {
   constructor(private claimService: ClaimService,
               public uiContext: UIContext,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private changeDetectorRefs: ChangeDetectorRef) {
     this.uiContext.setTittle('Reclamos');
     this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
@@ -30,7 +30,6 @@ export class ClaimComponent implements OnInit {
   ngOnInit() {
     this.claimService.findAll().subscribe(data => {
       this.claims = data;
-      console.log(this.claims);
     });
   }
 
@@ -46,10 +45,10 @@ export class ClaimComponent implements OnInit {
       data: claim
     }).afterClosed()
       .subscribe(response => {
-        let claims2 = that.claims;
-        const index: number = claims2.findIndex(x => x.id == response.data.id);
-        claims2[index] = response.data;
-        that.claims = claims2;
+        
+        this.claimService.findAll().subscribe(data => {
+          this.claims = data;
+        });
       });
   }
 
