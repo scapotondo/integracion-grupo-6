@@ -1,8 +1,8 @@
-import { Component, ComponentFactoryResolver } from '@angular/core';
-import {UIContext} from "./ui.context";
-import {TokenStorage} from "./storage/token.storage";
+import { Component } from '@angular/core';
+import { UIContext } from "./ui.context";
+import { TokenStorage } from "./storage/token.storage";
 import { Router } from '@angular/router';
-import {Location} from "@angular/common";
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-root',

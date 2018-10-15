@@ -1,0 +1,6 @@
+<mat-form-field class="form-field">
+  <input matInput type="text" placeholder="Search" (keydown)="enterKey($event)" [(ngModel)]="claimNumber">
+  <button mat-button matSuffix mat-icon-button aria-label="Search"  (click)="searchOrder()">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>

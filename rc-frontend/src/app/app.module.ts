@@ -26,6 +26,8 @@ import { ClaimComponent } from './components/claim/claim.component';
 import { ClaimCancelDialogComponent } from './components/claim-cancel-dialog/claim-cancel-dialog.component';
 import { NewClaimClientComponent } from './components/new-claim-client/new-claim-client.component';
 import { ClaimSearchComponent } from './components/claim-search/claim-search.component';
+import { SearchClaimComponent } from './components/search-claim/search-claim.component';
+import { SearchClaimDialogComponent } from './components/search-claim-dialog/search-claim-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ClaimSearchComponent } from './components/claim-search/claim-search.com
     ClaimComponent,
     ClaimCancelDialogComponent,
     NewClaimClientComponent,
-    ClaimSearchComponent
+    ClaimSearchComponent,
+    SearchClaimComponent,
+    SearchClaimDialogComponent
   ],
   imports: [
     RouterModule.forRoot(AppRoutes),
@@ -75,14 +79,16 @@ import { ClaimSearchComponent } from './components/claim-search/claim-search.com
     UserEditComponent,
     UserCreateComponent,
     ClaimCancelDialogComponent,
-    ClaimSearchComponent
+    ClaimSearchComponent,
+    SearchClaimDialogComponent
   ],
   exports: [
     UserDeleteComponent,
     UserEditComponent,
     UserCreateComponent,
     ClaimCancelDialogComponent,
-    ClaimSearchComponent
+    ClaimSearchComponent,
+    SearchClaimDialogComponent
   ]
 })
 export class AppModule { }
