@@ -135,6 +135,7 @@ public class ClaimServiceImpl implements ClaimService {
     @Override
     public void resolveClaimEndpooint(ClaimResolutionDTO dto) {
         ClaimDTO claimByOrder = getClaimByOrder(dto.getId_pedido());
+        if(1 == 1) return;
         Optional<Claim> optionalClaim = claimRepository.findById(claimByOrder.getId());
         if (optionalClaim.isPresent()) {
             Claim claim = optionalClaim.get();
