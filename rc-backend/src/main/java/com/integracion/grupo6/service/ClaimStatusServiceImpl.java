@@ -12,6 +12,10 @@ import java.util.List;
 @Service
 public class ClaimStatusServiceImpl implements ClaimStatusService {
 
+    private static Long CREATED_STATUS_ID = 0L;
+    private static Long CLOSING_STATUS_ID = 1L;
+    private static Long CANCELED_STATUS_ID = 2L;
+
     @Autowired
     private ClaimStatusRepository claimStatusRepository;
 
@@ -23,5 +27,20 @@ public class ClaimStatusServiceImpl implements ClaimStatusService {
         }
 
         return statuses;
+    }
+
+    @Override
+    public ClaimStatus findCreatedStatus() {
+        return claimStatusRepository.findById(CREATED_STATUS_ID).get();
+    }
+
+    @Override
+    public ClaimStatus findCanceledStatus() {
+        return claimStatusRepository.findById(CANCELED_STATUS_ID).get();
+    }
+
+    @Override
+    public ClaimStatus findClosingStatus() {
+        return claimStatusRepository.findById(CLOSING_STATUS_ID).get();
     }
 }

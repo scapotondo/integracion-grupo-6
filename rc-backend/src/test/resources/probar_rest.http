@@ -14,3 +14,13 @@ Content-Type: application/json
 
 ###
 
+
+GET http://localhost:8080//integration/logistics/claim-resolution/
+Content-Type: application/json
+
+{
+  "id_pedido": "666",
+  "fecha_entrega": "01/01/2018"
+}
+###
+
