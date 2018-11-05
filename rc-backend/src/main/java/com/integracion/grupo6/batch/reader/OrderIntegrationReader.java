@@ -24,14 +24,13 @@ public class OrderIntegrationReader extends FlatFileItemReader<OrderIntegrationD
         setLineMapper(new DefaultLineMapper<OrderIntegrationDTO>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
                 setNames(
-                        "id",
-                        "etaDate",
-                        "amount",
-                        "clientIdentification",
-                        "clientFullName",
-                        "clientEmail",
-                        "productId",
-                        "productDescription");
+                    "productDescription",
+                    "clientIdentification",
+                    "id",
+                    "productId",
+                    "clientEmail",
+                    "amount",
+                    "clientFullName");
             }});
             setFieldSetMapper(new BeanWrapperFieldSetMapper<OrderIntegrationDTO>() {{
                 setTargetType(OrderIntegrationDTO.class);
