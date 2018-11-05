@@ -61,20 +61,4 @@ public class ClaimServiceTest {
         claimService.resolveClaimEndpooint(dto);
     }
     
-    @Test
-    public void resolve() {
-        ClaimDTO dto = new ClaimDTO();
-
-        dto.setId(null);
-        dto.setOrderId(7777L);
-        dto.setType(claimTypeService.findAll().get(0));
-        dto.setClientIdentification("77777777");
-        dto.setOrigin(null);
-
-        Claim claim = claimService.create(dto, TEST_USERNAME);
-
-        Assert.assertNotNull(claim);
-    }
-
-
 }
