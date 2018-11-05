@@ -41,4 +41,21 @@ public class ClientServiceTest {
         Assert.assertEquals(client.getFullName(), newClient.getFullName());
         Assert.assertEquals(client.getEmail(), newClient.getEmail());
     }
+
+    @Test
+    public void update() {
+        final String otherEmail = "other@email.com";
+        Client client = new Client();
+        client.setIdentification("new-id-1");
+        client.setEmail("test@client.com");
+        client.setFullName("Test Client");
+
+        Client newClient = clientService.save(client);
+        newClient.setEmail(otherEmail);
+
+        newClient = clientService.save(newClient);
+
+        Assert.assertEquals(otherEmail, newClient.getEmail());
+    }
+
 }
