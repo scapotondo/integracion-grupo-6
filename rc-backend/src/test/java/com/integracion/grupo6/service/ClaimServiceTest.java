@@ -56,7 +56,7 @@ public class ClaimServiceTest {
     @Test(expected = EntityNotFoundException.class)
     public void resolveInvalid() {
         ClaimResolutionDTO dto = new ClaimResolutionDTO();
-        dto.setId_pedido("no-existe");
+        dto.setId_pedido("0");
         dto.setFecha_entrega("01/01/2018");
         claimService.resolveClaimEndpooint(dto);
     }

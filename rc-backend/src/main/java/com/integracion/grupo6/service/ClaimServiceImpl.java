@@ -135,6 +135,9 @@ public class ClaimServiceImpl implements ClaimService {
     @Override
     public void resolveClaimEndpooint(ClaimResolutionDTO dto) {
         ClaimDTO claimByOrder = getClaimByOrder(dto.getId_pedido());
+        if (claimByOrder == null) {
+            throw new EntityNotFoundException("No se encontro el Claim con Id " + dto.getId_pedido());
+        }
         Optional<Claim> optionalClaim = claimRepository.findById(claimByOrder.getId());
         if (optionalClaim.isPresent()) {
             Claim claim = optionalClaim.get();
