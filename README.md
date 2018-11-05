@@ -13,6 +13,18 @@ cd rc-backend
 mvnw.cmd spring-boot:run
 ```
 
+## Como correr los Tests JUnit
+### Linux/macOS
+```
+cd rc-backend
+./mvnw test
+```
+### Windows
+```
+cd rc-backend
+mvnw.cmd test
+```
+
 ## Fase Inicial
 
 ```cpp
