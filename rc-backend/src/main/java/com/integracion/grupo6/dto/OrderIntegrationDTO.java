@@ -6,8 +6,6 @@ public class OrderIntegrationDTO implements Serializable {
 
     private Long id;
 
-    private String etaDate;
-
     private String amount;
 
     private String clientIdentification;
@@ -26,14 +24,6 @@ public class OrderIntegrationDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getEtaDate() {
-        return etaDate;
-    }
-
-    public void setEtaDate(String etaDate) {
-        this.etaDate = etaDate;
     }
 
     public String getAmount() {
@@ -88,7 +78,6 @@ public class OrderIntegrationDTO implements Serializable {
     public String toString() {
         return "SaleDTO{" +
                 "id=" + id +
-                ", etaDate='" + etaDate + '\'' +
                 ", amount='" + amount + '\'' +
                 ", clientIdentification='" + clientIdentification + '\'' +
                 ", clientFullName='" + clientFullName + '\'' +

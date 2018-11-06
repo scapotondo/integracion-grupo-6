@@ -15,7 +15,6 @@ public class OrderValidator {
         validateProduct(dto.getProductId(), dto.getProductDescription());
         validateClient(dto.getClientIdentification(), dto.getClientFullName(), dto.getClientEmail());
         validateAmount(dto.getAmount());
-        validateEtaDate(dto.getEtaDate());
     }
 
     private void validateId(Long id) throws InvalidOrderFormatException {

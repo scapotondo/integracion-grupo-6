@@ -27,7 +27,6 @@ public class OrderValidatorTest {
         dto.setProductId("123456");
         dto.setProductDescription("Empanada");
         dto.setAmount("1010.50");
-        dto.setEtaDate("20180822");
 
         orderValidator.validate(dto);
     }
@@ -94,7 +93,6 @@ public class OrderValidatorTest {
         dto.setClientFullName("Maxi Gazquez");
         dto.setClientEmail("empa@nada.com");
         dto.setAmount("555");
-        dto.setEtaDate("fecha-invalida");
 
         orderValidator.validate(dto);
     }

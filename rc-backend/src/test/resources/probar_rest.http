@@ -15,7 +15,7 @@ Content-Type: application/json
 ###
 
 
-GET http://localhost:8080//integration/logistics/claim-resolution/
+GET http://localhost:8080/integration/logistics/claim-resolution/
 Content-Type: application/json
 
 {
@@ -24,3 +24,18 @@ Content-Type: application/json
 }
 ###
 
+
+PATCH https://logistica-uade-app.herokuapp.com/logistica/order/1/complain
+Content-Type: application/json
+
+###
+
+POST http://192.168.12.242:8080/claim/
+Content-Type: application/json
+
+{
+  "idPedido": "8",
+  "descripcion": "descripcionx",
+  "estado": "estado"
+}
+###

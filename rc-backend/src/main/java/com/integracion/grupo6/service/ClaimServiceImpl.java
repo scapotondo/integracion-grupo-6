@@ -6,6 +6,8 @@ import com.integracion.grupo6.domain.ClaimStatus;
 import com.integracion.grupo6.domain.ClaimType;
 import com.integracion.grupo6.dto.ClaimDTO;
 import com.integracion.grupo6.dto.ClaimResolutionDTO;
+import com.integracion.grupo6.dto.LogisticsEndpointDTO;
+import com.integracion.grupo6.dto.StoreIntegrationDTO;
 import com.integracion.grupo6.exception.ClaimCreationException;
 import com.integracion.grupo6.repository.ClaimRepository;
 import com.integracion.grupo6.repository.ClaimTypeRepository;
@@ -47,6 +49,12 @@ public class ClaimServiceImpl implements ClaimService {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private LogisticsEndpointService logisticsEndpointService;
+
+    @Autowired
+    private StoreEndpointService storeEndpointService;
 
     private final String LOGISTICS_EMAIL = "maximiliano.628@gmail.com";
     private final String RESOLVE_SUBJECT = "El reclamo %d ha sido resuelto.";
@@ -108,7 +116,17 @@ public class ClaimServiceImpl implements ClaimService {
             claim.setClaimStatus(status);
         }
 
-        return claimRepository.save(claim);
+        Claim newClaim = claimRepository.save(claim);
+        StoreIntegrationDTO dto = new StoreIntegrationDTO();
+        dto.setIdPedido(newClaim.getOrder().getId().toString());
+        dto.setEstado(newClaim.getClaimStatus().getName());
+        dto.setDescripcion(newClaim.getDescription());
+
+        storeEndpointService.sendClaimToStore(dto);
+        if(newClaim.getClaimType().isLogistics()) {
+            logisticsEndpointService.sendClaimToLogistics(newClaim.getOrder().getId().toString());
+        }
+        return newClaim;
     }
 
     @Override
