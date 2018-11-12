@@ -56,6 +56,7 @@ public class ClaimServiceImpl implements ClaimService {
     @Autowired
     private StoreEndpointService storeEndpointService;
 
+
     private final String LOGISTICS_EMAIL = "maximiliano.628@gmail.com";
     private final String RESOLVE_SUBJECT = "El reclamo %d ha sido resuelto.";
     private final String RESOLVE_MAIL = "El reclamo %d ha sido resuelto. El paquete fue entregado el dia %s.";
@@ -123,7 +124,7 @@ public class ClaimServiceImpl implements ClaimService {
         dto.setDescripcion(newClaim.getDescription());
 
         storeEndpointService.sendClaimToStore(dto);
-        if(newClaim.getClaimType().isLogistics()) {
+        if (newClaim.getClaimType().isLogistics()) {
             logisticsEndpointService.sendClaimToLogistics(newClaim.getOrder().getId().toString());
         }
         return newClaim;
@@ -161,9 +162,11 @@ public class ClaimServiceImpl implements ClaimService {
             Claim claim = optionalClaim.get();
             resolveClaim(claim);
             sendMailToClient(claim, dto.getFecha_entrega());
-            if (claim.getClaimType().isLogistics()) {
-                sendMailToLogistics(claim, dto.getFecha_entrega());
-            }
+            StoreIntegrationDTO storeDto = new StoreIntegrationDTO();
+            storeDto.setIdPedido(dto.getId_pedido());
+            storeDto.setDescripcion(String.format("Se cerro el reclamo el dia %s", dto.getFecha_entrega()));
+            storeDto.setEstado("CERRADO");
+            storeEndpointService.sendClaimToStore(storeDto);
         } else {
             throw new EntityNotFoundException("No se encontro el Claim con Id " + dto.getId_pedido());
         }

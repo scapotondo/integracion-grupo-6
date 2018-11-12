@@ -12,7 +12,7 @@ import javax.persistence.EntityNotFoundException;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping({"/integration/logistics"})
+@RequestMapping({"/api/public/reclamos/finalizar"})
 public class LogisticsIntegrationController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class LogisticsIntegrationController {
 
     private final static String errorMessage = "El pedido %d no existe.";
 
-    @GetMapping(path = {"/claim-resolution/"})
+    @PostMapping
     public ResponseEntity findById(@RequestBody ClaimResolutionDTO dto) {
         try {
             claimService.resolveClaimEndpooint(dto);
