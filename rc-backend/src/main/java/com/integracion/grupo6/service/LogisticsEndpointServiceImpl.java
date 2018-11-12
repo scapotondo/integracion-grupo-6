@@ -4,6 +4,7 @@ import com.integracion.grupo6.dto.ClaimResolutionDTO;
 import com.integracion.grupo6.dto.LogisticsEndpointDTO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -17,7 +18,8 @@ import java.net.URI;
 @Service
 public class LogisticsEndpointServiceImpl implements LogisticsEndpointService {
 
-    private static final String BASE_ENDPOINT = "http://logistica-uade-app.herokuapp.com/logistica/order/%s/complain";
+    @Value("${endpoint.logistics.uri}")
+    private String uri;
 
     private final Log logger = LogFactory.getLog(this.getClass());
 
@@ -30,8 +32,8 @@ public class LogisticsEndpointServiceImpl implements LogisticsEndpointService {
         requestFactory.setReadTimeout(2000);
         restTemplate.setRequestFactory(requestFactory);
 
-        String uri = String.format(BASE_ENDPOINT, orderId);
-        String response = restTemplate.patchForObject(uri, null, String.class);
-        logger.warn(String.format("HTTP_PATCH: %s; RESPONSE: %s", uri, response));
+        String uriParameter = uri.replace("{id}", orderId);
+        String response = restTemplate.patchForObject(uriParameter, null, String.class);
+        logger.warn(String.format("HTTP_PATCH: %s; RESPONSE: %s", uriParameter, response));
     }
 }
