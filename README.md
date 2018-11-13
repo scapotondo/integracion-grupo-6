@@ -2,15 +2,22 @@
 # Gestión de Reclamos - Cobranzas, Grupo 6
 
 ## Como correr la App
-### Linux/macOS
+### Backend
+#### Linux/macOS
 ```
 cd rc-backend
 ./mvnw spring-boot:run
 ```
-### Windows
+#### Windows
 ```
 cd rc-backend
 mvnw.cmd spring-boot:run
+```
+### Frontend
+```
+cd rc-frontend
+npm install //Instalar dependencias
+ng serve    //Correr el frontend
 ```
 
 ## Como correr los Tests JUnit
