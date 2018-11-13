@@ -33,7 +33,7 @@ public class LogisticsEndpointServiceImpl implements LogisticsEndpointService {
         restTemplate.setRequestFactory(requestFactory);
 
         String uriParameter = uri.replace("{id}", orderId);
-        String response = restTemplate.patchForObject(uriParameter, null, String.class);
+        String response = restTemplate.postForObject(uriParameter, null, String.class);
         logger.warn(String.format("HTTP_PATCH: %s; RESPONSE: %s", uriParameter, response));
     }
 }

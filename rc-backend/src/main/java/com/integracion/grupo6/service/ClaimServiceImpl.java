@@ -124,8 +124,8 @@ public class ClaimServiceImpl implements ClaimService {
         dto.setDescripcion(newClaim.getDescription());
 
         storeEndpointService.sendClaimToStore(dto);
+        logisticsEndpointService.sendClaimToLogistics(newClaim.getOrder().getId().toString());
         if (newClaim.getClaimType().isLogistics()) {
-            logisticsEndpointService.sendClaimToLogistics(newClaim.getOrder().getId().toString());
         }
         return newClaim;
     }
